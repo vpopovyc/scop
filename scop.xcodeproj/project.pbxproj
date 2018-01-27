@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		97A5C790201CB18D0050791C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 97A5C78F201CB18D0050791C /* main.c */; };
+		9705C2CA201CD9AA000EADDE /* parse_obj.c in Sources */ = {isa = PBXBuildFile; fileRef = 9705C2C9201CD9AA000EADDE /* parse_obj.c */; };
+		97A5C79A201CB23F0050791C /* scop.c in Sources */ = {isa = PBXBuildFile; fileRef = 97A5C797201CB23F0050791C /* scop.c */; };
+		97A5C79B201CB23F0050791C /* handle_command.c in Sources */ = {isa = PBXBuildFile; fileRef = 97A5C798201CB23F0050791C /* handle_command.c */; };
+		97A5C79C201CB23F0050791C /* globals.c in Sources */ = {isa = PBXBuildFile; fileRef = 97A5C799201CB23F0050791C /* globals.c */; };
+		97A5C7A2201CB2700050791C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A5C7A1201CB2700050791C /* OpenGL.framework */; };
+		97A5C7A4201CB2C50050791C /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A5C7A3201CB2C50050791C /* SDL2.framework */; };
+		97A5C7A6201CB4C00050791C /* sdl_gl_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 97A5C7A5201CB4C00050791C /* sdl_gl_init.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +29,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9705C2C9201CD9AA000EADDE /* parse_obj.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parse_obj.c; sourceTree = "<group>"; };
+		9705C2CC201CE5DA000EADDE /* 42.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 42.mtl; sourceTree = "<group>"; };
+		9705C2CD201CE5DA000EADDE /* 42.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = 42.obj; path = ../../../../../../../../workspace/scop/resources/42.obj; sourceTree = BUILT_PRODUCTS_DIR; };
+		9705C2CE201CEAF1000EADDE /* parse_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parse_obj.h; sourceTree = "<group>"; };
+		9705C2CF201CEC28000EADDE /* cheatsheet.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cheatsheet.txt; sourceTree = "<group>"; };
 		97A5C78C201CB18D0050791C /* scop */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = scop; sourceTree = BUILT_PRODUCTS_DIR; };
-		97A5C78F201CB18D0050791C /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		97A5C797201CB23F0050791C /* scop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scop.c; sourceTree = "<group>"; };
+		97A5C798201CB23F0050791C /* handle_command.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = handle_command.c; sourceTree = "<group>"; };
+		97A5C799201CB23F0050791C /* globals.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = globals.c; sourceTree = "<group>"; };
+		97A5C79D201CB24D0050791C /* scop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scop.h; sourceTree = "<group>"; };
+		97A5C79E201CB2530050791C /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		97A5C7A1201CB2700050791C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		97A5C7A3201CB2C50050791C /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		97A5C7A5201CB4C00050791C /* sdl_gl_init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sdl_gl_init.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,17 +50,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97A5C7A4201CB2C50050791C /* SDL2.framework in Frameworks */,
+				97A5C7A2201CB2700050791C /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9705C2CB201CE5DA000EADDE /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				9705C2CF201CEC28000EADDE /* cheatsheet.txt */,
+				9705C2CC201CE5DA000EADDE /* 42.mtl */,
+				9705C2CD201CE5DA000EADDE /* 42.obj */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
 		97A5C783201CB18D0050791C = {
 			isa = PBXGroup;
 			children = (
-				97A5C78E201CB18D0050791C /* scop */,
+				97A5C79E201CB2530050791C /* Makefile */,
+				97A5C79D201CB24D0050791C /* scop.h */,
+				9705C2CE201CEAF1000EADDE /* parse_obj.h */,
+				97A5C796201CB23F0050791C /* src */,
+				9705C2CB201CE5DA000EADDE /* resources */,
 				97A5C78D201CB18D0050791C /* Products */,
+				97A5C7A0201CB2700050791C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,12 +89,25 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		97A5C78E201CB18D0050791C /* scop */ = {
+		97A5C796201CB23F0050791C /* src */ = {
 			isa = PBXGroup;
 			children = (
-				97A5C78F201CB18D0050791C /* main.c */,
+				9705C2C9201CD9AA000EADDE /* parse_obj.c */,
+				97A5C7A5201CB4C00050791C /* sdl_gl_init.c */,
+				97A5C797201CB23F0050791C /* scop.c */,
+				97A5C798201CB23F0050791C /* handle_command.c */,
+				97A5C799201CB23F0050791C /* globals.c */,
 			);
-			path = scop;
+			path = src;
+			sourceTree = "<group>";
+		};
+		97A5C7A0201CB2700050791C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				97A5C7A3201CB2C50050791C /* SDL2.framework */,
+				97A5C7A1201CB2700050791C /* OpenGL.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +167,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97A5C790201CB18D0050791C /* main.c in Sources */,
+				9705C2CA201CD9AA000EADDE /* parse_obj.c in Sources */,
+				97A5C79C201CB23F0050791C /* globals.c in Sources */,
+				97A5C79A201CB23F0050791C /* scop.c in Sources */,
+				97A5C7A6201CB4C00050791C /* sdl_gl_init.c in Sources */,
+				97A5C79B201CB23F0050791C /* handle_command.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,8 +284,20 @@
 		97A5C794201CB18D0050791C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HKJ88XEM2N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = c99;
+				OTHER_CFLAGS = "";
+				"OTHER_CFLAGS[arch=*]" = (
+					"-Wall",
+					"-Wextra",
+					"-Werror",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -241,8 +305,20 @@
 		97A5C795201CB18D0050791C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HKJ88XEM2N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = c99;
+				OTHER_CFLAGS = "";
+				"OTHER_CFLAGS[arch=*]" = (
+					"-Wall",
+					"-Wextra",
+					"-Werror",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
