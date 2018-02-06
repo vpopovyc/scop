@@ -14,6 +14,10 @@
 		97A5C7A2201CB2700050791C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A5C7A1201CB2700050791C /* OpenGL.framework */; };
 		97A5C7A4201CB2C50050791C /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A5C7A3201CB2C50050791C /* SDL2.framework */; };
 		97A5C7A6201CB4C00050791C /* sdl_gl_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 97A5C7A5201CB4C00050791C /* sdl_gl_init.c */; };
+		97AC736F20260B1700273E78 /* stack.c in Sources */ = {isa = PBXBuildFile; fileRef = 97AC736C20260B1700273E78 /* stack.c */; };
+		97AC73732026192000273E78 /* context.c in Sources */ = {isa = PBXBuildFile; fileRef = 97AC73712026192000273E78 /* context.c */; };
+		97E90DE420279A5200E9F897 /* libft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E90DE320279A5200E9F897 /* libft.framework */; };
+		97E90DEC202A561300E9F897 /* loader.c in Sources */ = {isa = PBXBuildFile; fileRef = 97E90DEB202A561300E9F897 /* loader.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +47,15 @@
 		97A5C7A1201CB2700050791C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		97A5C7A3201CB2C50050791C /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		97A5C7A5201CB4C00050791C /* sdl_gl_init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sdl_gl_init.c; sourceTree = "<group>"; };
+		97AC736C20260B1700273E78 /* stack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stack.c; sourceTree = "<group>"; };
+		97AC736D20260B1700273E78 /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
+		97AC736E20260B1700273E78 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		97AC7370202618C700273E78 /* brick.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = brick.obj; sourceTree = "<group>"; };
+		97AC73712026192000273E78 /* context.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = context.c; sourceTree = "<group>"; };
+		97AC73722026192000273E78 /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
+		97E90DE320279A5200E9F897 /* libft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libft.framework; path = ../../../../Library/Frameworks/libft.framework; sourceTree = "<group>"; };
+		97E90DEA202A548E00E9F897 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
+		97E90DEB202A561300E9F897 /* loader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loader.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97E90DE420279A5200E9F897 /* libft.framework in Frameworks */,
 				97A5C7A4201CB2C50050791C /* SDL2.framework in Frameworks */,
 				97A5C7A2201CB2700050791C /* OpenGL.framework in Frameworks */,
 			);
@@ -61,6 +75,8 @@
 		9705C2CB201CE5DA000EADDE /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				97E90DEA202A548E00E9F897 /* cube.obj */,
+				97AC7370202618C700273E78 /* brick.obj */,
 				9705C2CF201CEC28000EADDE /* cheatsheet.txt */,
 				9705C2CC201CE5DA000EADDE /* 42.mtl */,
 				9705C2CD201CE5DA000EADDE /* 42.obj */,
@@ -92,8 +108,10 @@
 		97A5C796201CB23F0050791C /* src */ = {
 			isa = PBXGroup;
 			children = (
+				97AC736B20260AC800273E78 /* utils */,
 				9705C2C9201CD9AA000EADDE /* parse_obj.c */,
 				97A5C7A5201CB4C00050791C /* sdl_gl_init.c */,
+				97E90DEB202A561300E9F897 /* loader.c */,
 				97A5C797201CB23F0050791C /* scop.c */,
 				97A5C798201CB23F0050791C /* handle_command.c */,
 				97A5C799201CB23F0050791C /* globals.c */,
@@ -104,10 +122,23 @@
 		97A5C7A0201CB2700050791C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97E90DE320279A5200E9F897 /* libft.framework */,
 				97A5C7A3201CB2C50050791C /* SDL2.framework */,
 				97A5C7A1201CB2700050791C /* OpenGL.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		97AC736B20260AC800273E78 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				97AC73712026192000273E78 /* context.c */,
+				97AC73722026192000273E78 /* context.h */,
+				97AC736C20260B1700273E78 /* stack.c */,
+				97AC736D20260B1700273E78 /* stack.h */,
+				97AC736E20260B1700273E78 /* utils.h */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,9 +198,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97E90DEC202A561300E9F897 /* loader.c in Sources */,
+				97AC736F20260B1700273E78 /* stack.c in Sources */,
 				9705C2CA201CD9AA000EADDE /* parse_obj.c in Sources */,
 				97A5C79C201CB23F0050791C /* globals.c in Sources */,
 				97A5C79A201CB23F0050791C /* scop.c in Sources */,
+				97AC73732026192000273E78 /* context.c in Sources */,
 				97A5C7A6201CB4C00050791C /* sdl_gl_init.c in Sources */,
 				97A5C79B201CB23F0050791C /* handle_command.c in Sources */,
 			);
