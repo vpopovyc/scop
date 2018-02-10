@@ -14,14 +14,12 @@
 
 int main(int ac, char *av[])
 {
-    if (ac == 2)
+    if (ac == 2)    
     {
         init();
         parse_obj(av[1]);
-        // TODO: Create VAO
-        load_vertices_to_VBO();
-        // TODO: Compile shaders
-        // TODO: Draw first cube
+        compile_shaders();
+        loader();
         handle_command();
         deinit();
     }

@@ -24,6 +24,10 @@ void init(void)
                            WINX, WINY, SDL_WINDOW_OPENGL);
     assert(g_gl.win != NULL);
     g_gl.ctx = SDL_GL_CreateContext(g_gl.win);
+    glViewport(0, 0, WINX, WINY);
+    glEnable(GL_DEPTH_TEST);
+    glewExperimental = 1;
+    glewInit();
     SDL_GL_SetSwapInterval(1);
     glClearColor(0.863, 0.863, 0.863, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);

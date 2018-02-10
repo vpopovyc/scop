@@ -13,7 +13,8 @@
 EXEC = scop
 
 CORE = src/scop.c src/handle_command.c src/globals.c src/sdl_gl_init.c \
-        src/parse_obj.c
+        src/parse_obj.c src/loader.c src/utils/stack.c src/utils/context.c \
+        src/compile_shaders.c
 
 SRC += $(CORE)
 
@@ -22,7 +23,7 @@ OBJ = $(SRC:.c=.o)
 CC = clang
 CCFLAGS = -Wall -Wextra -Werror
 FWPATH = -F /Library/Frameworks
-FRAMEWORKS = -framework SDL2 -framework OpenGL
+FRAMEWORKS = -framework OpenGL -lGLEW  -framework SDL2 -framework libft
 
 all: $(EXEC)
 

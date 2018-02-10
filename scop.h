@@ -13,8 +13,12 @@
 #ifndef __SCOP_H
 # define __SCOP_H
 
-# include <OpenGL/gl.h>
-# include <SDL2/SDL.h>
+#define GL3_PROTOTYPES 1
+#include <GL/glew.h>
+#include <SDL2/SDL.h>
+
+
+
 # include <libft/libft.h>
 
 # include <assert.h>
@@ -29,15 +33,24 @@ void init(void);
 void deinit(void);
 void parse_obj(const char *file_path);
 void handle_command(void);
-void load_vertices_to_VBO(void);
+void loader(void);
+void compile_shaders(void);
 
 typedef struct      s_gl
 {
     SDL_Window      *win;
     SDL_GLContext   ctx;
     SDL_Event       event;
-    GLuint          v_vbo;
+    GLsizei         vert_num;
+    GLuint          idx_num;
+    GLuint          vbo;
     GLuint          vao;
+    GLuint 			ebo;
+    GLuint          fragment_shader;
+    GLuint          vertex_shader;
+    GLuint          shader_program;
+    GLuint          rot_y_uniform;
+    GLuint          rot_vec_uniform;
 }                   t_gl;
 
 extern  t_gl        g_gl;
