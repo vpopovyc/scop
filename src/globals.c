@@ -16,7 +16,13 @@
 
 t_gl g_gl =
 {
-    .win = NULL
+    .win = NULL,
+    .lcs = {
+    	.x = (t_float4){0.0f, 0.0f, 0.0f, 1.0f},
+    	.y = (t_float4){0.0f, 0.0f, 0.0f, 1.0f},
+    	.z = (t_float4){0.0f, 0.0f, 0.0f, 1.0f}
+    },
+    .quat = (t_float4){0.0f, 0.0f, 0.0f, 1.0f}
 };
 
 t_stack g_vertices = {

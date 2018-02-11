@@ -17,8 +17,6 @@
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 
-
-
 # include <libft/libft.h>
 
 # include <assert.h>
@@ -36,6 +34,20 @@ void handle_command(void);
 void loader(void);
 void compile_shaders(void);
 
+typedef struct      s_cs
+{
+    t_axis          x;
+    t_axis          y;
+    t_axis          z;
+}                   t_cs;
+
+typedef enum        e_axis_type
+{
+    x_axis,
+    y_axis,
+    z_axis
+}                   t_axis_type;
+
 typedef struct      s_gl
 {
     SDL_Window      *win;
@@ -49,8 +61,11 @@ typedef struct      s_gl
     GLuint          fragment_shader;
     GLuint          vertex_shader;
     GLuint          shader_program;
-    GLuint          rot_y_uniform;
-    GLuint          rot_vec_uniform;
+    // Test
+    t_cs            lcs;
+    GLuint          quat_loc;
+    t_float4        quat;
+    t_float4        quat_x;
 }                   t_gl;
 
 extern  t_gl        g_gl;
