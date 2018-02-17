@@ -23,7 +23,7 @@ OBJ = $(SRC:.c=.o)
 CC = clang
 CCFLAGS = -Wall -Wextra -Werror
 FWPATH = -F /Library/Frameworks
-FRAMEWORKS = -framework OpenGL -lGLEW  -framework SDL2 -framework libft
+FRAMEWORKS = -framework OpenGL /Users/vpopovyc/.brew/lib/libGLEW.dylib -framework SDL2 libft/libft.a 
 
 all: $(EXEC)
 
@@ -31,7 +31,7 @@ $(EXEC): $(OBJ)
 	$(CC) $(CCFLAGS) $(FWPATH) $(FRAMEWORKS) $(OBJ) -o $(EXEC)
 
 %.o: %.c
-	$(CC) -g $(CCFLAGS) $(FWPATH) -o $@ -c $<
+	$(CC) -g -I/Users/vpopovyc/.brew/include -Ilibft/libft.h $(CCFLAGS) -o $@ -c $<
 
 clean:
 	rm -rf $(OBJ)

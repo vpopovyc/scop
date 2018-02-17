@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vpopovyc <vpopovyc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/27 15:12:12 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/01/27 15:12:13 by vpopovyc         ###   ########.fr       */
+/*   Created: 2017/09/16 16:40:19 by vpopovyc          #+#    #+#             */
+/*   Updated: 2017/09/16 16:47:22 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __UTILS_H
-# define __UTILS_H
+#include "libft.h"
 
-# include "stack.h"
-# include "context.h"
-# include "../../libft/libft.h"
-
-#endif
+int		ft_strequ(char *s1, char *s2)
+{
+	while (*s1 || *s2)
+	{
+        if (*s1 != *s2)
+            return (0);
+		s1++;
+		s2++;
+	}
+	return (1);
+}

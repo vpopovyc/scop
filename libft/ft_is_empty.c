@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/27 15:12:12 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/01/27 15:12:13 by vpopovyc         ###   ########.fr       */
+/*   Created: 2018/02/03 20:08:26 by vpopovyc          #+#    #+#             */
+/*   Updated: 2018/02/03 20:08:28 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __UTILS_H
-# define __UTILS_H
+#include "libft.h"
 
-# include "stack.h"
-# include "context.h"
-# include "../../libft/libft.h"
+int ft_is_empty(const char *line)
+{
+    register const char *p;
 
-#endif
+    p = line;
+    while (*p)
+    {
+        if (*p != ' ')
+            return (0);
+        ++p;
+    }
+    return (1);
+}

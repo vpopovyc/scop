@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vpopovyc <vpopovyc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/27 15:12:12 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/01/27 15:12:13 by vpopovyc         ###   ########.fr       */
+/*   Created: 2017/09/16 13:26:53 by vpopovyc          #+#    #+#             */
+/*   Updated: 2017/09/16 13:41:26 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __UTILS_H
-# define __UTILS_H
+#include "libft.h"
 
-# include "stack.h"
-# include "context.h"
-# include "../../libft/libft.h"
+char	*ft_strchr(char *s, int c)
+{
+	char *str;
+	int len;
 
-#endif
+	len = (int)ft_strlen(s);
+	while (len-- >= 0)
+	{
+		if (*s == c)
+		{
+			str = (char*)s;
+			return (str);
+		}
+		s++;
+	}
+	return (NULL);
+}

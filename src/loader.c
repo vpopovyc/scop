@@ -13,6 +13,27 @@
 #include "../scop.h"
 #include "utils/utils.h"
 
+
+void    object_center_in(t_axis center, GLfloat *buffer, size_t size)
+{
+    size_t  i;
+    size_t  j;
+    float   tmp;
+
+    i = 0;
+    j = 0;
+    while (i < size)
+    {
+        tmp = buffer[i + j];
+        buffer[i + j] = tmp - center[0];
+        tmp = buffer[i + ++j];
+        buffer[i + j] = tmp - center[1];
+        tmp = buffer[i + ++j];
+        buffer[i + j] = tmp - center[2];
+        ++i;
+    }
+}
+
 GLfloat *get_vertices(size_t vbo_size)
 {
     GLfloat         *buffer;
@@ -20,24 +41,32 @@ GLfloat *get_vertices(size_t vbo_size)
     size_t          j;
     size_t          size;
     t_vertex_ctx    *ctx;
+    t_axis          center;
 
     i = 0;
     j = 0;
+    center = (t_axis){0.0f, 0.0f, 0.0f, 1.0f};
     size = g_gl.vert_num / 3;
     buffer = malloc(vbo_size);
     while (i < size)
     {
         ctx = (t_vertex_ctx*)top(&g_vertices);
         buffer[i + j] = (GLfloat)ctx->x;
+        center[0] += buffer[i + j];
         printf("index in:%lu value: %f\n", i + j, buffer[i + j]);
         buffer[i + ++j] = (GLfloat)ctx->y;
+        center[1] += buffer[i + j];
         printf("index in:%lu value: %f\n", i + j, buffer[i + j]);
         buffer[i + ++j] = (GLfloat)ctx->z;
+        center[2] += buffer[i + j];
         printf("index in:%lu value: %f\n", i + j, buffer[i + j]);
         pop(&g_vertices);
         ++i;
     }
     printf("VBO stack size: %d\n", stack_size(&g_vertices));
+    center = qdiv(center, size);
+    printf("Center in [%f %f %f]\n", center[0], center[1], center[2]);
+    object_center_in(center, buffer, size);
     return (buffer);
 }
 

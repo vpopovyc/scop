@@ -17,7 +17,7 @@
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 
-# include <libft/libft.h>
+# include "libft/libft.h"
 
 # include <assert.h>
 # include <stdlib.h>

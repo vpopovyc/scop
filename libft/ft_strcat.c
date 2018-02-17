@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vpopovyc <vpopovyc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/27 15:12:12 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/01/27 15:12:13 by vpopovyc         ###   ########.fr       */
+/*   Created: 2017/09/15 17:18:05 by vpopovyc          #+#    #+#             */
+/*   Updated: 2017/09/16 13:37:31 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __UTILS_H
-# define __UTILS_H
+#include "libft.h"
 
-# include "stack.h"
-# include "context.h"
-# include "../../libft/libft.h"
+char	*ft_strcat(char *s1, char *s2)
+{
+	char *str;
 
-#endif
+	str = s1;
+	str = str + ft_strlen(s1);
+	while (*s2)
+	{
+		*str = *s2;
+		str++;
+		s2++;
+	}
+	*str = '\0';
+	return (s1);
+}

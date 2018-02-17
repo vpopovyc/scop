@@ -18,21 +18,21 @@ typedef struct s_stack_elem t_stack_elem;
 
 typedef struct              s_stack_elem
 {
-    t_stack_elem            *top_elem;
-    t_stack_elem            *bot_elem;
-    void                    *context;
+	t_stack_elem            *top_elem;
+	t_stack_elem            *bot_elem;
+	void                    *context;
 }                           t_stack_elem;
 
 typedef struct              s_stack
 {
-    t_stack_elem            *top_node;
-    t_stack_elem            *bot_node;
+	t_stack_elem            *top_node;
+	t_stack_elem            *bot_node;
 }                           t_stack;
 
-void                        enqueue(t_stack *stack, void *context);
-void                        push(t_stack *stack, void *context);
-void                        pop(t_stack *stack);
-void                        *top(t_stack *stack);
-int                         stack_size(t_stack *stack);
+void						enqueue(t_stack *stack, void *context);
+void						push(t_stack *stack, void *context);
+void						pop(t_stack *stack);
+void						*top(t_stack *stack);
+int							stack_size(t_stack *stack);
 
 #endif

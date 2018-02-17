@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vpopovyc <vpopovyc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/27 15:12:12 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/01/27 15:12:13 by vpopovyc         ###   ########.fr       */
+/*   Created: 2017/09/16 13:32:22 by vpopovyc          #+#    #+#             */
+/*   Updated: 2017/09/16 13:37:54 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __UTILS_H
-# define __UTILS_H
+#include "libft.h"
 
-# include "stack.h"
-# include "context.h"
-# include "../../libft/libft.h"
+char	*ft_strcpy(char *dst, char *src)
+{
+	ssize_t	b;
 
-#endif
+	b = -1;
+	while (src[++b] != '\0')
+		dst[b] = src[b];
+	dst[b] = '\0';
+	return (dst);
+}

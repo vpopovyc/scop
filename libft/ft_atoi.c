@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/27 15:12:12 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/01/27 15:12:13 by vpopovyc         ###   ########.fr       */
+/*   Created: 2018/02/03 20:21:04 by vpopovyc          #+#    #+#             */
+/*   Updated: 2018/02/03 20:21:06 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __UTILS_H
-# define __UTILS_H
+int	ft_atoi(const char *p)
+{
+	_Bool	minus;
+	int		result;
 
-# include "stack.h"
-# include "context.h"
-# include "../../libft/libft.h"
-
-#endif
+	minus = 0;
+	result = 0;
+	while ((*p >= '\t' && *p <= '\r') || *p == ' ')
+		++p;
+	minus = *p == '-' ? 1 : 0;
+	*p == '-' || *p == '+' ? ++p : p;
+	while (*p >= '0' && *p <= '9')
+	{
+		result = result * 10 + *p - '0';
+		++p;
+	}
+	return (minus ? -result : result);
+}

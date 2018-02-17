@@ -16,7 +16,7 @@ GLfloat g_rot_x = 0.0f;
 GLfloat g_rot_y = 0.0f;
 GLfloat g_rot_z = 0.0f;
 GLfloat g_scale_factor = 1.0f;
-t_axis  g_current_axis = quat(1.0f, 0.0f, 0.0f, 1.0f);
+t_axis  g_current_axis = (t_axis){0.0f, 0.0f, 0.0f, 1.0f};
 
 static inline void __exit(int excode)
 {
@@ -64,8 +64,7 @@ void set_model_matrix(void)
     // Rotations
     quat_to_m44(&g_gl.quat, rotate_matrix);
     // Translation
-    t_axis f = quat(1.0f, 0.0f, 0.0f, 1.0f);
-    translation_m44(&f, translate_matrix);
+    translation_m44(&g_current_axis, translate_matrix);
 
     glUniformMatrix4fv(rotate_matrix_id, 1, GL_FALSE, rotate_matrix);
     glUniformMatrix4fv(scale_matrix_id, 1, GL_FALSE, scale_matrix);
@@ -140,27 +139,45 @@ void handle_command(void)
             update_axis(z_axis);
             key_pressed = 1;
         }
-        if (keystate[SDL_SCANCODE_T])
+        if (g_gl.event.wheel.y == 1)
         {
-            g_scale_factor += 0.1;
+            g_scale_factor += g_scale_factor + 0.1f > 1.5f ? 0.0f : 0.1f;
             key_pressed = 1;
         }
-        if (keystate[SDL_SCANCODE_Y])
+        if (g_gl.event.wheel.y == -1)
         {
-            g_scale_factor -= 0.1;
+            g_scale_factor -= g_scale_factor - 0.1f > 0.1f ? 0.1f : 0.0f;
+            key_pressed = 1;
+        }
+        if (keystate[SDL_SCANCODE_X])
+        {
+            g_current_axis[0] += 0.009f;
             key_pressed = 1;
         }
         if (keystate[SDL_SCANCODE_Z])
         {
-            g_current_axis = quat(1.0f, 0.0f, 0.0f, 1.0f);
+            g_current_axis[0] -= 0.009f;
+            key_pressed = 1;
         }
-        if (keystate[SDL_SCANCODE_X])
+        if (keystate[SDL_SCANCODE_V])
         {
-            g_current_axis = quat(0.0f, 1.0f, 0.0f, 1.0f);
+            g_current_axis[1] += 0.009f;
+            key_pressed = 1;
         }
         if (keystate[SDL_SCANCODE_C])
         {
-            g_current_axis = quat(0.0f, 0.0f, 1.0f, 1.0f);
+            g_current_axis[1] -= 0.009f;
+            key_pressed = 1;
+        }
+        if (keystate[SDL_SCANCODE_N])
+        {
+            g_current_axis[2] += 0.009f;
+            key_pressed = 1;
+        }
+        if (keystate[SDL_SCANCODE_B])
+        {
+            g_current_axis[2] -= 0.009f;
+            key_pressed = 1;
         }
         if (key_pressed)
         {
