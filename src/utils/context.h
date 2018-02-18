@@ -15,7 +15,7 @@
 
 # include <stdarg.h>
 # include <stddef.h>
-# include "../../libft/libft.h"
+# include <libft.h>
 # include "../../parse_obj.h"
 
 typedef struct s_face_ctx t_face_ctx;

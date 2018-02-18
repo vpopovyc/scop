@@ -10,33 +10,33 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME = libFT.a
 
 SRC = ft_itoa.c ft_atof.c ft_memcpy.c ft_memset.c ft_strcat.c ft_strchr.c \
 	ft_strcpy.c ft_strncpy.c ft_strjoin.c ft_strnew.c ft_strdup.c ft_ppdel.c \
 	ft_strequ.c ft_strsplit.c get_next_line.c ft_strlen.c matrices.c \
 	quaternions.c quaternions_ext.c ft_split.c ft_atoi.c ft_is_empty.c
 
-INC = libft.h
+INCDIR = -I include
 
-OBJ = $(SRC:.c=.o) 
+OBJ = $(SRC:.c=.o)
 
-CFLAGS = -c -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O3
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+	@ar rc $@ $^
+	@ranlib $@
 	@echo  "\x1b[32mlibft   compiled\x1b[0m"
 
 %.o: %.c
-	clang -I $(INC) $(CFLAGS) -o $@ $<
+	clang $(CFLAGS) $(INCDIR) -o $@ -c $<
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

@@ -15,6 +15,6 @@
 
 # include "stack.h"
 # include "context.h"
-# include "../../libft/libft.h"
+# include <libft.h>
 
 #endif
