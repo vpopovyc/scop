@@ -18,7 +18,7 @@
 #include <SDL2/SDL.h>
 
 # include <libft.h>
-
+# include <lodepng.h> 
 # include <assert.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -53,11 +53,16 @@ typedef struct      s_gl
     SDL_Window      *win;
     SDL_GLContext   ctx;
     SDL_Event       event;
+    // Refactor
     GLsizei         vert_num;
-    GLuint          idx_num;
+    GLsizei         idx_num;
+    GLsizei         uv_num;
+    GLsizei         norm_num;
+    // ^--------------------^
     GLuint          vbo;
     GLuint          vao;
-    GLuint 			ebo;
+    GLuint          ebo;
+    GLuint 			tex;
     GLuint          fragment_shader;
     GLuint          vertex_shader;
     GLuint          shader_program;

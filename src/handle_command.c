@@ -78,9 +78,10 @@ void set_mvp(void)
 
 void draw(void)
 {
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glUseProgram(g_gl.shader_program);
     set_mvp();
+    glBindTexture(GL_TEXTURE_2D, g_gl.tex);
     glBindVertexArray(g_gl.vao);
     glDrawElements(GL_TRIANGLES, g_gl.idx_num, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);

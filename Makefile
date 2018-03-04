@@ -50,26 +50,36 @@ LIBFTINC = libft/include
 
 LIBFT = libft
 
+# libLodePNG
+
+LIBLODEPNGBIN = liblodepng/libLodePNG.a
+
+LIBGLEWINC = liblodepng
+
+LIBLODEPNG = liblodepng
+
 # -----------------------------------------------------------
 # Compiler rules
 
-LIBS = -lGLEW -lFT
+LIBS = -lGLEW -lFT -lLodePNG
 
-LIBSDIR = -L$(LIBGLEW) -L$(LIBFT)
+LIBSDIR = -L$(LIBGLEW) -L$(LIBFT) -L$(LIBLODEPNG)
 
-LIBSINC = -I$(LIBGLEWINC) -I$(LIBFTINC)
+LIBSINC = -I$(LIBGLEWINC) -I$(LIBFTINC) -I$(LIBGLEWINC)
 
 # -----------------------------------------------------------
 
 all: $(EXEC)
 
-$(EXEC): $(LIBFTBIN) $(LIBGLEWBIN) $(OBJ)
+$(EXEC): $(LIBFTBIN) $(LIBGLEWBIN) $(LIBLODEPNGBIN) $(OBJ)
 	$(CC) $(CCFLAGS) $(FRMPATH) $(FRAMEWORKS) $(LIBSDIR) $(LIBS) \
 	$(OBJ) -o $(EXEC)
 
 $(LIBFTBIN): libft.all
 
 $(LIBGLEWBIN): glew.all
+
+$(LIBLODEPNGBIN): lode.all
 
 %.o: %.c
 	$(CC) -g $(CCFLAGS) $(LIBSINC) $(FRMPATH) -o $@ -c $<
@@ -93,7 +103,7 @@ libft.fclean:
 	@make -C libft/ fclean
 
 libft.re:
-	@make -C libft re
+	@make -C libft/ re
 
 glew.all:
 	@echo  "\x1b[32mlibglew   compiles...\x1b[0m"
@@ -101,5 +111,18 @@ glew.all:
 
 glew.clean:
 	@make -C libglew/src distclean
+
+lode.all:
+	@echo  "\x1b[32mliblodepng   compiles...\x1b[0m"
+	@make -C liblodepng/ all
+
+lode.clean:
+	@make -C liblodepng/ clean
+
+lode.fclean:
+	@make -C liblodepng/ fclean
+
+lode.re:
+	@make -C liblodepng/ re
 
 .phony: all clean fclean re
