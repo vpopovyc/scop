@@ -12,6 +12,7 @@
 
 #include "stack.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int         stack_size(t_stack *stack)
 {
@@ -30,6 +31,26 @@ int         stack_size(t_stack *stack)
         }
     }
     return (len);
+}
+
+void    *value_at(unsigned long index, t_stack *stack)
+{
+    unsigned long  i;
+    t_stack_elem   *res;
+
+    i = 0;
+    res = stack->top_node;
+    if (res != NULL)
+    {
+        while (i != index)
+        {
+            res = res->bot_elem;
+            // printf("i: %lu index: %lu\n", i, index);
+            ++i;
+        }
+        return (res->context);
+    }
+    return (NULL);
 }
 
 void   *top(t_stack *stack)

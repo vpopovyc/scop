@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   hash_id.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/03 21:45:59 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/02/03 21:46:01 by vpopovyc         ###   ########.fr       */
+/*   Created: 2018/03/11 13:17:16 by vpopovyc          #+#    #+#             */
+/*   Updated: 2018/03/11 13:17:17 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <libft.h>
+#include <hash.h>
 
-void	*ft_memcpy(void *dst, void *src, size_t n)
+t_uint	str_hash(char *sv)
 {
-	register char 	*p_d;
-	register char 	*p_s;
-	register size_t i;
-	register size_t i_max;
+	t_uint	hash;
 
-	p_d = dst;
-	p_s = src;
-	i_max = n;
-	i = 0;
-	while (i < i_max)
+	hash = HASH_FNV;
+	while (*sv)
 	{
-		p_d[i] = p_s[i];
-		++i;
+		hash = (MAGIC_NUMBER_FNV * hash) ^ *sv;
+		++sv;
 	}
-	return (p_d);
+	return (hash);
+}
+
+t_uint	hash_id(t_uint hash, t_uint sizeoftable)
+{
+	return (hash % sizeoftable);
 }

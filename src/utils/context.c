@@ -13,6 +13,15 @@
 #include "context.h"
 #include <stdlib.h>
 
+void *new_hash_ctx(t_uint index)
+{
+    void        *ptr;
+
+    ptr = malloc(sizeof(t_uint));
+    ft_memcpy(ptr, &index, sizeof(t_uint));
+    return (ptr);
+}
+
 void *new_face_ctx(t_face_ctx *ctx)
 {
     void        *ptr;

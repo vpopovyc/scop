@@ -1,10 +1,10 @@
 #version 410 core
 
 layout (location = 0) in vec3 pos;
-layout (location = 1) in vec2 uv;
-layout (location = 2) in vec3 normal;
+layout (location = 1) in vec3 normal;
+layout (location = 2) in vec2 uv;
 
-// out vec3 _color;
+// out vec4 _color;
 out vec2 tex_coord;
 
 uniform mat4 rotation_matrix;
@@ -22,7 +22,7 @@ const mat4 proj_matrix = mat4(
 void    main()
 {
     gl_Position = proj_matrix * (translate_matrix * rotation_matrix * scale_matrix * vec4(pos.x, pos.y, pos.z, 1.0f));
-    // _color = vec3(pos.x < 0.0f ? pos.x + 0.9 : pos.x, pos.y < 0.0f ? pos.y + 0.7 : pos.y, pos.z < 0.0f ? pos.z + 0.6 : pos.z);
-    tex_coord = vec2(uv.x, 1.0f - uv.y);
+    // _color = vec4(pos.x < 0.0f ? pos.x + 0.9 : pos.x, pos.y < 0.0f ? pos.y + 0.7 : pos.y, pos.z < 0.0f ? pos.z + 0.6 : pos.z, 1.0f);
+    tex_coord = uv;
 }
 

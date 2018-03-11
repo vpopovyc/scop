@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector_types.h"
+#include <vector_types.h>
 
 t_float4    quat1f(const float a)
 {

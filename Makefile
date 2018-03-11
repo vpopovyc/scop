@@ -22,7 +22,7 @@ OBJ = $(SRC:.c=.o)
 
 CC = clang
 
-CCFLAGS = -Wall -Wextra -Werror -O3
+CCFLAGS = -Wall -Wextra -Werror -g
 
 FRMPATH = -F /Library/Frameworks
 

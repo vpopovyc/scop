@@ -15,13 +15,14 @@ NAME = libFT.a
 SRC = ft_itoa.c ft_atof.c ft_memcpy.c ft_memset.c ft_strcat.c ft_strchr.c \
 	ft_strcpy.c ft_strncpy.c ft_strjoin.c ft_strnew.c ft_strdup.c ft_ppdel.c \
 	ft_strequ.c ft_strsplit.c get_next_line.c ft_strlen.c matrices.c \
-	quaternions.c quaternions_ext.c ft_split.c ft_atoi.c ft_is_empty.c
+	quaternions.c quaternions_ext.c ft_split.c ft_atoi.c ft_is_empty.c \
+	hash.c hash_id.c
 
 INCDIR = -I include
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -O3
+CFLAGS = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 

@@ -29,10 +29,11 @@ typedef struct              s_stack
 	t_stack_elem            *bot_node;
 }                           t_stack;
 
-void						enqueue(t_stack *stack, void *context);
-void						push(t_stack *stack, void *context);
-void						pop(t_stack *stack);
-void						*top(t_stack *stack);
 int							stack_size(t_stack *stack);
+void						*top(t_stack *stack);
+void    					*value_at(unsigned long index, t_stack *stack);
+void						pop(t_stack *stack);
+void						push(t_stack *stack, void *context);
+void						enqueue(t_stack *stack, void *context);
 
 #endif

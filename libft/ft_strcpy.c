@@ -14,7 +14,7 @@
 
 char	*ft_strcpy(char *dst, char *src)
 {
-	ssize_t	b;
+	long long	b;
 
 	b = -1;
 	while (src[++b] != '\0')

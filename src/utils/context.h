@@ -24,11 +24,13 @@ void *new_ctx(t_line_type type, ...) __attribute__ ((malloc));
 
 void *new_face_ctx(t_face_ctx *ctx) __attribute__ ((malloc));
 
+void *new_hash_ctx(t_uint index) __attribute__ ((malloc));
+
 typedef struct  s_vert_data
 {
     size_t      vertex;
-    size_t      normal;
     size_t      texture;
+    size_t      normal;
 }               t_vert_data;
 
 typedef struct  s_vertex_ctx

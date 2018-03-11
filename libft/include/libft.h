@@ -17,9 +17,11 @@
 # include <unistd.h>
 # include <vector_types.h>
 # include <get_next_line.h>
+# include <hash.h>
+# include <stddef.h>
 
 size_t  ft_strlen(char *s);
-int		ft_strequ(char *s1, char *s2);
+int		ft_strequ(const char *s1, const char *s2);
 void	ft_ppdel(char ***sv);
 void	*ft_memset(void *p, char c, size_t len);
 void	*ft_memcpy(void *dst, void *src, size_t n);
