@@ -45,7 +45,6 @@ void    *value_at(unsigned long index, t_stack *stack)
         while (i != index)
         {
             res = res->bot_elem;
-            // printf("i: %lu index: %lu\n", i, index);
             ++i;
         }
         return (res->context);

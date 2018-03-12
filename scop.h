@@ -63,14 +63,17 @@ typedef struct      s_gl
     GLuint          vao;
     GLuint          ebo;
     GLuint 			tex;
+    // Get rid of that
     GLuint          fragment_shader;
     GLuint          vertex_shader;
+    // ^--------------------^
     GLuint          shader_program;
     // Test
     t_cs            lcs;
     GLuint          quat_loc;
     t_float4        quat;
     t_float4        quat_x;
+    // ^--------------------^
 }                   t_gl;
 
 extern  t_gl        g_gl;

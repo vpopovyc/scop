@@ -12,7 +12,6 @@
 
 #include <hash.h>
 #include <string.h>
-#include <stdio.h>
 #define TABLESIZE(table) (*(t_uint*)(((void*)(table)) - sizeof(t_uint)))
 
 int		key_exist(char *key, t_hash *table)
@@ -22,12 +21,10 @@ int		key_exist(char *key, t_hash *table)
 
 	id = hash_id(str_hash(key), TABLESIZE(table));
 	iter = table[id].internal;
-	printf("#here %d\n", id);
 	if (ft_strequ(table[id].key, key))
 		return (1);
 	else
 	{
-		// printf("here %p %p\n", iter, iter->key);
 		while (iter)
 		{
 			if (iter == NULL)
@@ -41,7 +38,6 @@ int		key_exist(char *key, t_hash *table)
 			iter = iter->internal;
 		}
 	}
-	printf("#here end\n");
 	return (0);
 }
 
@@ -51,7 +47,7 @@ static t_hash	*append_with(char *key, void *value, t_hash *internal)
 	t_hash	*new;
 
 	new = malloc(sizeof(t_hash));
-	memset(new, sizeof(t_hash), 0);
+	memset(new, 0, sizeof(t_hash));
 	new->key = strdup(key);
 	new->value = value;
 	iter = internal;
@@ -110,7 +106,7 @@ t_hash	*new_table(t_uint size)
 		return (NULL);
 	else
 	{
-		memset(mem, (sizeof(t_hash) * size) + sizeof(t_uint), 0);
+		memset(mem, 0, (sizeof(t_hash) * size) + sizeof(t_uint));
 		memcpy(mem, &size, sizeof(t_uint)); 
 		return (mem + sizeof(t_uint));
 	}

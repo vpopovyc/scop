@@ -110,11 +110,10 @@ void tex_loader(void)
 
     width = 0;
     height = 0;
-    error = lodepng_decode32_file(&png, &width, &height, "src/tex/uv.png");
+    error = lodepng_decode32_file(&png, &width, &height, "src/tex/pattern.png");
     if (error)
     {
         printf("decoder: %s\n", lodepng_error_text(error));
-
         exit(-1);
     }
     glGenTextures(1, &g_gl.tex);
@@ -199,7 +198,6 @@ void process_vert_data(t_vert_data *data, GLfloat *vbo, GLuint *ibo)
 
     if (!table){
         table = new_table(getpagesize());
-        printf("pzdec %p\n", table);
     }
     key = keygen(data);
     if (key_exist(key, table))
@@ -219,11 +217,8 @@ void process_vert_data(t_vert_data *data, GLfloat *vbo, GLuint *ibo)
 void add_to_buffers(t_face_ctx *ctx, GLfloat *vbo, GLuint *ibo)
 {
     process_vert_data(&ctx->vert1, vbo, ibo);
-    printf("process_vert_data(&ctx->vert1, vbo, ibo)\n");
     process_vert_data(&ctx->vert2, vbo, ibo);
-    printf("process_vert_data(&ctx->vert2, vbo, ibo)\n");
     process_vert_data(&ctx->vert3, vbo, ibo);
-    printf("process_vert_data(&ctx->vert3, vbo, ibo)\n");
 }
 
 void load(GLfloat *vbo, GLuint *ibo)
@@ -256,33 +251,13 @@ void loader(void)
 
     g_gl.idx_num = ibo_size / sizeof(GLuint);
 
-    printf("idx_num %u\n", g_gl.idx_num);
-
     vbo_buffer = malloc(vbo_size);
-    ft_memset(vbo_buffer, vbo_size, 0);
+    ft_memset(vbo_buffer, 0, vbo_size);
 
     ibo_buffer = malloc(ibo_size);
-    ft_memset(ibo_buffer, ibo_size, 0);
-
-    printf("pos stack size %d\n", stack_size(&g_vertices));
-    printf("norm stack size %d\n", stack_size(&g_normals));
-    printf("tex stack size %d\n", stack_size(&g_texels));
+    ft_memset(ibo_buffer, 0, ibo_size);
 
     load(vbo_buffer, ibo_buffer);
-
-    for (int i = 0; i < g_gl.idx_num; i++)
-    {
-        printf("index in buffer: %u\n", ibo_buffer[i]);
-    }
-
-    printf("vbo_size: %lu\n", vbo_size / sizeof(GLfloat) / 8);
-
-    for (t_uint i = 0; i < vbo_size / sizeof(GLfloat) / 8;)
-    {
-        printf("\n-----------\nvertex: \nposition: {\n\t x: %f  y: %f z: %f\n}\nnormals: {\n\t x: %f y:%f z:%f\n}\ntextures: {\n\t x: %f y: %f\n}\n", 
-                                        vbo_buffer[i], vbo_buffer[i + 1], vbo_buffer[i + 2], vbo_buffer[i + 3], vbo_buffer[i + 4], vbo_buffer[i + 5], vbo_buffer[i + 6], vbo_buffer[i + 7]);
-        i += 8;
-    }
 
     tex_loader();
 
