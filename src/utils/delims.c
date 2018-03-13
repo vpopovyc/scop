@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   globals.c                                          :+:      :+:    :+:   */
+/*   delims.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/27 15:11:53 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/01/27 15:11:55 by vpopovyc         ###   ########.fr       */
+/*   Created: 2018/03/13 22:18:30 by vpopovyc          #+#    #+#             */
+/*   Updated: 2018/03/13 22:18:31 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../scop.h"
-#include "../parse_obj.h"
-#include "utils/utils.h"
+#include "utils.h"
 
-t_gl g_gl =
+int space_delim(int c)
 {
-    .win = NULL,
-    .lcs = {
-    	.x = (t_float4){0.0f, 0.0f, 0.0f, 1.0f},
-    	.y = (t_float4){0.0f, 0.0f, 0.0f, 1.0f},
-    	.z = (t_float4){0.0f, 0.0f, 0.0f, 1.0f}
-    },
-    .quat = (t_float4){0.0f, 0.0f, 0.0f, 1.0f}
-};
+    if (c == ' ')
+        return (1);
+    else
+        return (0);
+}
+
+int face_delim(int c)
+{
+    if (c == 'f' || c == ' ')
+        return (1);
+    else
+        return (0);
+}
+
+int slash_delim(int c)
+{
+    if (c == '/')
+        return (1);
+    else
+        return (0);
+}

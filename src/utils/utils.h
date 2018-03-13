@@ -13,8 +13,11 @@
 #ifndef __UTILS_H
 # define __UTILS_H
 
-# include "stack.h"
 # include "context.h"
 # include <libft.h>
+
+int space_delim(int c);
+int face_delim(int c);
+int slash_delim(int c);
 
 #endif

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		97060E80205869D500E5550F /* delims.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = delims.c; sourceTree = "<group>"; };
 		97AD8C502057124E005966BE /* scop.en.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = scop.en.pdf; sourceTree = "<group>"; };
 		97AD8C512057124E005966BE /* scop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scop.h; sourceTree = "<group>"; };
 		97AD8C532057124E005966BE /* loader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loader.c; sourceTree = "<group>"; };
@@ -16,9 +17,7 @@
 		97AD8C592057124E005966BE /* pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern.png; sourceTree = "<group>"; };
 		97AD8C5A2057124E005966BE /* low_polly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = low_polly.png; sourceTree = "<group>"; };
 		97AD8C5E2057124E005966BE /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
-		97AD8C5F2057124E005966BE /* stack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stack.c; sourceTree = "<group>"; };
 		97AD8C602057124E005966BE /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
-		97AD8C622057124E005966BE /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
 		97AD8C642057124E005966BE /* context.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = context.c; sourceTree = "<group>"; };
 		97AD8C672057124E005966BE /* scop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scop.c; sourceTree = "<group>"; };
 		97AD8C6A2057124E005966BE /* handle_command.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = handle_command.c; sourceTree = "<group>"; };
@@ -77,10 +76,9 @@
 		97AD8C5D2057124E005966BE /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				97060E80205869D500E5550F /* delims.c */,
 				97AD8C5E2057124E005966BE /* utils.h */,
-				97AD8C5F2057124E005966BE /* stack.c */,
 				97AD8C602057124E005966BE /* context.h */,
-				97AD8C622057124E005966BE /* stack.h */,
 				97AD8C642057124E005966BE /* context.c */,
 			);
 			path = utils;

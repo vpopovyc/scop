@@ -6,14 +6,14 @@
 #    By: vpopovyc <vpopovyc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/01 18:32:39 by vpopovyc          #+#    #+#              #
-#    Updated: 2017/11/01 20:47:24 by vpopovyc         ###   ########.fr        #
+#    Updated: 2018/03/13 22:44:08 by vpopovyc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 EXEC = scop
 
 CORE = src/scop.c src/handle_command.c src/globals.c src/sdl_gl_init.c \
-        src/parse_obj.c src/loader.c src/utils/stack.c src/utils/context.c \
+        src/parse_obj.c src/loader.c src/utils/delims.c src/utils/context.c \
         src/compile_shaders.c
 
 SRC += $(CORE)

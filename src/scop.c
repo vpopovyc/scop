@@ -14,12 +14,15 @@
 
 int main(int ac, char *av[])
 {
-    if (ac == 2)    
+    t_model_data scop_model;
+
+    ft_memset(&scop_model, 0, sizeof(t_model_data));
+    if (ac == 2)
     {
         init();
-        parse_obj(av[1]);
+        parse_obj(av[1], &scop_model);
         compile_shaders();
-        loader();
+        loader(&scop_model);
         handle_command();
         deinit();
     }

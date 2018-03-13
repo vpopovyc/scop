@@ -6,13 +6,12 @@
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 17:21:33 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/02/03 17:21:34 by vpopovyc         ###   ########.fr       */
+/*   Updated: 2018/03/13 22:40:21 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include <stack.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 int         stack_size(t_stack *stack)
 {

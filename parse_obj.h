@@ -29,12 +29,4 @@ typedef enum    e_line_type
 
 typedef struct s_stack  t_stack;
 
-extern t_stack g_vertices;
-
-extern t_stack g_texels;
-
-extern t_stack g_normals;
-
-extern t_stack g_faces;
-
 #endif

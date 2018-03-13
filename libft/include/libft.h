@@ -6,7 +6,7 @@
 /*   By: vpopovyc <vpopovyc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/15 17:09:16 by vpopovyc          #+#    #+#             */
-/*   Updated: 2017/09/16 16:45:57 by vpopovyc         ###   ########.fr       */
+/*   Updated: 2018/03/13 22:42:44 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <vector_types.h>
 # include <get_next_line.h>
+# include <stack.h>
 # include <hash.h>
 # include <stddef.h>
 

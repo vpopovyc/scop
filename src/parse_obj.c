@@ -21,30 +21,6 @@ void process_mtl_lib(void)
     perror("Not implemented");
 }
 
-int space_delim(int c)
-{
-    if (c == ' ')
-        return (1);
-    else
-        return (0);
-}
-
-int face_delim(int c)
-{
-    if (c == 'f' || c == ' ')
-        return (1);
-    else
-        return (0);
-}
-
-int slash_delim(int c)
-{
-    if (c == '/')
-        return (1);
-    else
-        return (0);
-}
-
 void generic_reader(char **data, float *buffer, const size_t n)
 {
     register float      *buffer_iter;
@@ -61,31 +37,31 @@ void generic_reader(char **data, float *buffer, const size_t n)
     ft_ppdel(&data);
 }
 
-void read_vertices(char **data)
+void read_vertices(char **data, t_stack *vertices)
 {
     float buff[4];
 
     generic_reader(data, buff, sizeof(buff));
-    enqueue(&g_vertices, new_ctx(vertex, buff[0], buff[1], buff[2]));
+    enqueue(vertices, new_ctx(vertex, buff[0], buff[1], buff[2]));
 }
 
-void read_texels(char **data)
+void read_texels(char **data, t_stack *texels)
 {
     float buff[2];
 
     generic_reader(data, buff, sizeof(buff));
-    enqueue(&g_texels, new_ctx(vertex_texture, buff[0], buff[1]));
+    enqueue(texels, new_ctx(vertex_texture, buff[0], buff[1]));
 }
 
-void read_normal(char **data)
+void read_normal(char **data, t_stack *normals)
 {
     float buff[4];
 
     generic_reader(data, buff, sizeof(buff));
-    enqueue(&g_normals, new_ctx(vertex_normal, buff[0], buff[1], buff[2]));
+    enqueue(normals, new_ctx(vertex_normal, buff[0], buff[1], buff[2]));
 }
 
-void process_vertex(char *line)
+void process_vertex(char *line, t_model_data *scop_model)
 {
     char opt_type;
 
@@ -99,11 +75,11 @@ void process_vertex(char *line)
     }
     if (opt_type == vertex_texture)
     {
-        read_texels(ft_split(line, space_delim));
+        read_texels(ft_split(line, space_delim), &scop_model->texels);
     }
     else if (opt_type == vertex_normal)
     {
-        read_normal(ft_split(line, space_delim));
+        read_normal(ft_split(line, space_delim), &scop_model->normals);
     }
     else if (opt_type == uv_mapping)
     {
@@ -111,7 +87,7 @@ void process_vertex(char *line)
     }
     else
     {
-        read_vertices(ft_split(line, space_delim));
+        read_vertices(ft_split(line, space_delim), &scop_model->vertices);
     }
 }
 
@@ -123,7 +99,7 @@ void process_vert_indice(char **data, t_vert_data *vert)
     data_ptr = (void*)data;
     p = (size_t*)vert;
     ft_memset(vert, 0, sizeof(t_vert_data));
-    // TODo: Unsafe ptr reference
+    // TODO: Unsafe ptr reference
     while (*data)
     {
         *p = ft_atoi(*data);
@@ -133,17 +109,17 @@ void process_vert_indice(char **data, t_vert_data *vert)
     ft_ppdel((char***)&data_ptr);
 }
 
-void process_face_indices(char *v_fst, char *v_sec, char *v_thrd)
+void process_face_indices(char *v_fst, char *v_sec, char *v_thrd, t_stack *faces)
 {
     t_face_ctx  ctx;
 
     process_vert_indice(ft_split(v_fst, slash_delim), &ctx.vert1);
     process_vert_indice(ft_split(v_sec, slash_delim), &ctx.vert2);
     process_vert_indice(ft_split(v_thrd, slash_delim), &ctx.vert3);
-    enqueue(&g_faces, new_face_ctx(&ctx));
+    enqueue(faces, new_face_ctx(&ctx));
 }
 
-void process_face(char *line)
+void process_face(char *line, t_stack *faces)
 {
     int  i;
     char **data;
@@ -152,13 +128,13 @@ void process_face(char *line)
     data = ft_split(line, face_delim);
     while (data[i + 2])
     {
-        process_face_indices(data[0], data[i + 1], data[i + 2]);
+        process_face_indices(data[0], data[i + 1], data[i + 2], faces);
         ++i;
     }
     ft_ppdel(&data);
 }
 
-void match_type(char type, char *line)
+void match_type(char type, char *line, t_model_data *scop_model)
 {
     if (type == comment)
     {
@@ -175,11 +151,11 @@ void match_type(char type, char *line)
     }
     else if (type == face)
     {
-        process_face(line);
+        process_face(line, &scop_model->faces);
     }
     else if (type == vertex)
     {
-        process_vertex(line);
+        process_vertex(line, scop_model);
     }
     else
     {
@@ -188,7 +164,7 @@ void match_type(char type, char *line)
     }
 }
 
-void parse_obj(const char *file_path)
+void parse_obj(const char *file_path, t_model_data *scop_model)
 {
     int     fd;
     char    *line;
@@ -199,7 +175,7 @@ void parse_obj(const char *file_path)
         if (ft_is_empty(line))
             ;// Do nothing
         else
-            match_type(line[0], line);
+            match_type(line[0], line, scop_model);
         free(line);
     }
     close(fd);

@@ -23,16 +23,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-# define WINY 600
-# define WINX 600
+# define WINY 800
+# define WINX 800
 # define WINNAME "scop"
-
-void init(void);
-void deinit(void);
-void parse_obj(const char *file_path);
-void handle_command(void);
-void loader(void);
-void compile_shaders(void);
 
 typedef struct      s_cs
 {
@@ -76,7 +69,21 @@ typedef struct      s_gl
     // ^--------------------^
 }                   t_gl;
 
-extern  t_gl        g_gl;
+typedef struct      s_model_data
+{
+    t_stack         vertices;
+    t_stack         texels;
+    t_stack         normals;
+    t_stack         faces;
+}                   t_model_data;
 
+void init(void);
+void deinit(void);
+void parse_obj(const char *file_path, t_model_data *scop_model);
+void handle_command(void);
+void loader(t_model_data *scop_model);
+void compile_shaders(void);
+
+extern  t_gl        g_gl;
 
 #endif
