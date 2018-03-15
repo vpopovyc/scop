@@ -46,27 +46,12 @@ typedef struct      s_gl
     SDL_Window      *win;
     SDL_GLContext   ctx;
     SDL_Event       event;
-    // Refactor
-    GLsizei         vert_num;
-    GLsizei         idx_num;
-    GLsizei         uv_num;
-    GLsizei         norm_num;
-    // ^--------------------^
     GLuint          vbo;
     GLuint          vao;
+    GLuint          tex;
     GLuint          ebo;
-    GLuint 			tex;
-    // Get rid of that
-    GLuint          fragment_shader;
-    GLuint          vertex_shader;
-    // ^--------------------^
+    GLsizei         idx_num;
     GLuint          shader_program;
-    // Test
-    t_cs            lcs;
-    GLuint          quat_loc;
-    t_float4        quat;
-    t_float4        quat_x;
-    // ^--------------------^
 }                   t_gl;
 
 typedef struct      s_model_data
@@ -77,13 +62,11 @@ typedef struct      s_model_data
     t_stack         faces;
 }                   t_model_data;
 
-void init(void);
-void deinit(void);
+void init(t_gl *gl);
+void deinit(t_gl *gl);
 void parse_obj(const char *file_path, t_model_data *scop_model);
-void handle_command(void);
-void loader(t_model_data *scop_model);
-void compile_shaders(void);
-
-extern  t_gl        g_gl;
+void handle_command(t_gl *gl);
+void loader(t_gl *gl, t_model_data *scop_model);
+void compile_shaders(t_gl *gl);
 
 #endif

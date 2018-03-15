@@ -12,19 +12,26 @@
 
 #include "../scop.h"
 
+void preinit(t_gl *gl, t_model_data *scop_model)
+{
+    ft_memset(gl, 0, sizeof(t_gl));
+    ft_memset(scop_model, 0, sizeof(t_model_data));
+}
+
 int main(int ac, char *av[])
 {
+    t_gl         gl;
     t_model_data scop_model;
 
-    ft_memset(&scop_model, 0, sizeof(t_model_data));
+    preinit(&gl, &scop_model);
     if (ac == 2)
     {
-        init();
+        init(&gl);
         parse_obj(av[1], &scop_model);
-        compile_shaders();
-        loader(&scop_model);
-        handle_command();
-        deinit();
+        compile_shaders(&gl);
+        loader(&gl, &scop_model);
+        handle_command(&gl);
+        deinit(&gl);
     }
     return (0);
 }

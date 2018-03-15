@@ -35,49 +35,44 @@ void print_error_log(GLuint shader, GLchar *log)
     perror(log);
 }
 
-void check_compile_errors(void)
+void check_compile_errors(GLuint shader_program, GLuint fragment_shader, GLuint vertex_shader)
 {
     GLint   success;
     GLchar  log[512];
 
-    glGetShaderiv(g_gl.vertex_shader, GL_COMPILE_STATUS, &success);
+    glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &success);
     if (!success)
-        print_error_log(g_gl.vertex_shader, log);
-    glGetShaderiv(g_gl.fragment_shader, GL_COMPILE_STATUS, &success);
+        print_error_log(vertex_shader, log);
+    glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &success);
     if (!success)
-        print_error_log(g_gl.fragment_shader, log);
-    glGetProgramiv(g_gl.shader_program, GL_LINK_STATUS, &success);
+        print_error_log(fragment_shader, log);
+    glGetProgramiv(shader_program, GL_LINK_STATUS, &success);
     if (!success)
-        print_error_log(g_gl.fragment_shader, log);
+        print_error_log(fragment_shader, log);
 }
 
-void compile_shaders(void)
+void compile_shaders(t_gl *gl)
 {
-    const char    *vert_shader;
-    const char    *frag_shader;
+    const GLchar *vert_shader;
+    const GLchar *frag_shader;
+    GLuint        fragment_shader;
+    GLuint        vertex_shader;
 
-    // Vertex shader
-    g_gl.vertex_shader = glCreateShader(GL_VERTEX_SHADER);
+    vertex_shader = glCreateShader(GL_VERTEX_SHADER);
     vert_shader = reader("src/shaders/vertex.glsl");
-    const GLchar *const * ptr = &vert_shader;
-    glShaderSource(g_gl.vertex_shader, 1, ptr, NULL);
-    glCompileShader(g_gl.vertex_shader);
-    // Fragment shader
-    g_gl.fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(vertex_shader, 1, &vert_shader, NULL);
+    glCompileShader(vertex_shader);
+    fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
     frag_shader = reader("src/shaders/fragment.glsl");
-    const GLchar *const * ptr2 = &frag_shader;
-    glShaderSource(g_gl.fragment_shader, 1, ptr2, NULL);
-    glCompileShader(g_gl.fragment_shader);
-    // Program
-    g_gl.shader_program = glCreateProgram();
-    glAttachShader(g_gl.shader_program, g_gl.vertex_shader);
-    glAttachShader(g_gl.shader_program, g_gl.fragment_shader);
-    glLinkProgram(g_gl.shader_program);
-
-    check_compile_errors();
-
-    glDeleteShader(g_gl.fragment_shader);
-    glDeleteShader(g_gl.vertex_shader);
-
-
+    glShaderSource(fragment_shader, 1, &frag_shader, NULL);
+    glCompileShader(fragment_shader);
+    gl->shader_program = glCreateProgram();
+    glAttachShader(gl->shader_program, vertex_shader);
+    glAttachShader(gl->shader_program, fragment_shader);
+    glLinkProgram(gl->shader_program);
+    check_compile_errors(gl->shader_program, vertex_shader, fragment_shader);
+    glDeleteShader(fragment_shader);
+    glDeleteShader(vertex_shader);
+    free(*(void**)&vert_shader);
+    free(*(void**)&frag_shader);
 }

@@ -25,7 +25,6 @@
 		97AD8C6D2057124E005966BE /* fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragment.glsl; sourceTree = "<group>"; };
 		97AD8C6E2057124E005966BE /* vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertex.glsl; sourceTree = "<group>"; };
 		97AD8C6F2057124E005966BE /* compile_shaders.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compile_shaders.c; sourceTree = "<group>"; };
-		97AD8C702057124E005966BE /* globals.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = globals.c; sourceTree = "<group>"; };
 		97AD8C712057124E005966BE /* parse_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parse_obj.h; sourceTree = "<group>"; };
 		97AD8C732057124E005966BE /* 42.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 42.mtl; sourceTree = "<group>"; };
 		97AD8C742057124E005966BE /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
@@ -58,7 +57,6 @@
 				97AD8C672057124E005966BE /* scop.c */,
 				97AD8C6A2057124E005966BE /* handle_command.c */,
 				97AD8C6F2057124E005966BE /* compile_shaders.c */,
-				97AD8C702057124E005966BE /* globals.c */,
 			);
 			path = src;
 			sourceTree = "<group>";

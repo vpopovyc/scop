@@ -13,7 +13,6 @@
 #include "../scop.h"
 #include "utils/utils.h"
 
-
 // void    object_center_in(t_axis center, GLfloat *buffer, size_t size)
 // {
 //     size_t  i;
@@ -60,48 +59,7 @@
 //     object_center_in(center, buffer, size);
 // }
 
-// GLfloat *get_vbo(size_t vbo_size)
-// {
-//     GLfloat         *buffer;
-
-//     buffer = malloc(vbo_size);
-//     get_vertices(buffer, g_gl.vert_num / 3);
-//     get_uvs(buffer, g_gl.uv_num / 2, g_gl.vert_num);
-//     get_normals(buffer, g_gl.norm_num / 3, g_gl.vert_num + g_gl.uv_num);
-//     return (buffer);
-// }
-
-// GLuint  *get_indices(size_t ebo_size)
-// {
-//     GLuint      *buffer;
-//     size_t      i;
-//     size_t      j;
-//     size_t      size;
-//     t_face_ctx  *ctx;
-
-//     i = 0;
-//     j = 0;
-//     size = g_gl.idx_num / 3;
-//     buffer = malloc(ebo_size);
-//     while (i < size)
-//     {
-//         // Unwrap 
-//         ctx = (t_face_ctx*)top(&g_faces);
-//         buffer[i + j] = (GLuint)ctx->vert1.vertex - 1;
-//         printf("face index in:%lu value: %u\n", i + j, buffer[i + j]);
-//         buffer[i + ++j] = (GLuint)ctx->vert2.vertex - 1;
-//         printf("face index in:%lu value: %u\n", i + j, buffer[i + j]);
-//         buffer[i + ++j] = (GLuint)ctx->vert3.vertex - 1;
-//         printf("face index in:%lu value: %u\n", i + j, buffer[i + j]);
-//         // Next iter
-//         pop(&g_faces);
-//         ++i;
-//     }
-//     printf("EBO stack size: %d\n", stack_size(&g_faces));
-//     return (buffer);
-// }
-
-void tex_loader(void)
+void tex_loader(t_gl *gl)
 {
     unsigned int  width;
     unsigned int  height;
@@ -110,14 +68,14 @@ void tex_loader(void)
 
     width = 0;
     height = 0;
-    error = lodepng_decode32_file(&png, &width, &height, "src/tex/pattern.png");
+    error = lodepng_decode32_file(&png, &width, &height, "src/tex/low_polly.png");
     if (error)
     {
         printf("decoder: %s\n", lodepng_error_text(error));
         exit(-1);
     }
-    glGenTextures(1, &g_gl.tex);
-    glBindTexture(GL_TEXTURE_2D, g_gl.tex);
+    glGenTextures(1, &gl->tex);
+    glBindTexture(GL_TEXTURE_2D, gl->tex);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_BGRA, GL_UNSIGNED_BYTE, png);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -238,7 +196,7 @@ void load(GLfloat *vbo, GLuint *ibo, t_model_data *scop_model)
     }
 }
 
-void loader(t_model_data *scop_model)
+void loader(t_gl *gl, t_model_data *scop_model)
 {
     GLfloat *vbo_buffer;
     GLuint  *ibo_buffer;
@@ -249,7 +207,7 @@ void loader(t_model_data *scop_model)
     vbo_size = stack_size(&scop_model->faces) * sizeof(GLfloat) * 8 * 3;
     ibo_size = stack_size(&scop_model->faces) * sizeof(GLuint) * 3;
 
-    g_gl.idx_num = ibo_size / sizeof(GLuint);
+    gl->idx_num = ibo_size / sizeof(GLuint);
 
     vbo_buffer = malloc(vbo_size);
     ft_memset(vbo_buffer, 0, vbo_size);
@@ -259,19 +217,19 @@ void loader(t_model_data *scop_model)
 
     load(vbo_buffer, ibo_buffer, scop_model);
 
-    tex_loader();
+    tex_loader(gl);
 
     // Gen VBO & VAO
-    glGenBuffers(1, &g_gl.vbo);
-    glGenBuffers(1, &g_gl.ebo);
-    glGenVertexArrays(1, &g_gl.vao);
+    glGenBuffers(1, &gl->vbo);
+    glGenBuffers(1, &gl->ebo);
+    glGenVertexArrays(1, &gl->vao);
     // Bind VAO
-    glBindVertexArray(g_gl.vao);
+    glBindVertexArray(gl->vao);
     // Bind VBO
-    glBindBuffer(GL_ARRAY_BUFFER, g_gl.vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, gl->vbo);
     glBufferData(GL_ARRAY_BUFFER, vbo_size, vbo_buffer, GL_DYNAMIC_DRAW);
     // Bind EBO
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, g_gl.ebo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, gl->ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, ibo_size, ibo_buffer, GL_DYNAMIC_DRAW);
     // Attributes
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_TRUE, 8 * sizeof(GLfloat), (GLvoid*)0);
