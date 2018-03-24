@@ -61,7 +61,15 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "resources/Porsche_911_GT2.obj"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "resources/42.obj"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "resources/test.obj"
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

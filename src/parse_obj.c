@@ -15,12 +15,6 @@
 #include "utils/utils.h"
 #include <fcntl.h>
 
-void process_mtl_lib(void)
-{
-    // TODO: Investigate about that feature
-    perror("Not implemented");
-}
-
 void generic_reader(char **data, float *buffer, const size_t n)
 {
     register float      *buffer_iter;
@@ -81,10 +75,6 @@ void process_vertex(char *line, t_model_data *scop_model)
     {
         read_normal(ft_split(line, space_delim), &scop_model->normals);
     }
-    else if (opt_type == uv_mapping)
-    {
-        // TODO: Process uv's
-    }
     else
     {
         read_vertices(ft_split(line, space_delim), &scop_model->vertices);
@@ -99,8 +89,9 @@ void process_vert_indice(char **data, t_vert_data *vert)
     data_ptr = (void*)data;
     p = (size_t*)vert;
     ft_memset(vert, 0, sizeof(t_vert_data));
-    // TODO: Unsafe ptr reference
-    while (*data)
+    if (!data)
+        return;
+    while (*data && ((size_t)(ptrdiff_t)p - (ptrdiff_t)vert < sizeof(t_vert_data)))
     {
         *p = ft_atoi(*data);
         ++p;
@@ -126,7 +117,9 @@ void process_face(char *line, t_stack *faces)
 
     i = 0;
     data = ft_split(line, face_delim);
-    while (data[i + 2])
+    if (!data)
+        return;
+    while (data[0] && data[i + 1] && data[i + 2])
     {
         process_face_indices(data[0], data[i + 1], data[i + 2], faces);
         ++i;
@@ -144,11 +137,6 @@ void match_type(char type, char *line, t_model_data *scop_model)
     {
         printf("> Object: %s\n", line);
     }
-    else if (type == mtllib)
-    {
-        // TODO: Process mtl
-        process_mtl_lib();
-    }
     else if (type == face)
     {
         process_face(line, &scop_model->faces);
@@ -159,8 +147,35 @@ void match_type(char type, char *line, t_model_data *scop_model)
     }
     else
     {
-        // TODO: Think about that case
-        perror("Unexpected type, skipping it\n");
+        return;
+    }
+}
+
+void object_center_in(t_stack *vertices)
+{
+    size_t          i;
+    size_t          vert_num;
+    t_axis          center;
+    t_vertex_ctx    *ctx;
+
+    vert_num = stack_size(vertices);
+    center = (t_axis){0.0f, 0.0f, 0.0f, 1.0f};
+    i = 0;
+    while (i < vert_num && (ctx = (t_vertex_ctx*)value_at(i, vertices)))
+    {
+        center[x_axis] += (GLfloat)ctx->x;
+        center[y_axis] += (GLfloat)ctx->y;
+        center[z_axis] += (GLfloat)ctx->z;
+        ++i;
+    }
+    center = qdiv(center, vert_num);
+    i = 0;
+    while (i < vert_num && (ctx = (t_vertex_ctx*)value_at(i, vertices)))
+    {
+        ctx->x -= center[x_axis];
+        ctx->y -= center[y_axis];
+        ctx->z -= center[z_axis];
+        ++i;
     }
 }
 
@@ -178,5 +193,6 @@ void parse_obj(const char *file_path, t_model_data *scop_model)
             match_type(line[0], line, scop_model);
         free(line);
     }
+    object_center_in(&scop_model->vertices);
     close(fd);
 }

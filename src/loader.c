@@ -13,52 +13,6 @@
 #include "../scop.h"
 #include "utils/utils.h"
 
-// void    object_center_in(t_axis center, GLfloat *buffer, size_t size)
-// {
-//     size_t  i;
-//     size_t  j;
-//     float   tmp;
-
-//     i = 0;
-//     j = 0;
-//     while (i < size)
-//     {
-//         tmp = buffer[i + j];
-//         buffer[i + j] = tmp - center[0];
-//         tmp = buffer[i + ++j];
-//         buffer[i + j] = tmp - center[1];
-//         tmp = buffer[i + ++j];
-//         buffer[i + j] = tmp - center[2];
-//         ++i;
-//     }
-// }
-
-// void get_vertices(GLfloat *buffer, const size_t size)
-// {
-//     size_t          i;
-//     size_t          j;
-//     t_vertex_ctx    *ctx;
-//     t_axis          center;
-
-//     i = 0;
-//     j = 0;
-//     center = (t_axis){0.0f, 0.0f, 0.0f, 1.0f};
-//     while (i < size)
-//     {
-//         ctx = (t_vertex_ctx*)top(&g_vertices);
-//         buffer[i + j] = (GLfloat)ctx->x;
-//         center[0] += buffer[i + j];
-//         buffer[i + ++j] = (GLfloat)ctx->y;
-//         center[1] += buffer[i + j];
-//         buffer[i + ++j] = (GLfloat)ctx->z;
-//         center[2] += buffer[i + j];
-//         pop(&g_vertices);
-//         ++i;
-//     }
-//     center = qdiv(center, size);
-//     object_center_in(center, buffer, size);
-// }
-
 void tex_loader(t_gl *gl)
 {
     unsigned int  width;
@@ -86,30 +40,6 @@ void tex_loader(t_gl *gl)
     free(png);
 }
 
-char *keygen(t_vert_data *data)
-{
-    char *v_str;
-    char *n_str;
-    char *t_str;
-    char *res;
-    char *tmp;
-
-    tmp = ft_itoa(data->vertex, 10);
-    v_str = ft_strjoin(tmp, "/");
-    free(tmp);
-    tmp = ft_itoa(data->normal, 10);
-    n_str = ft_strjoin(tmp, "/");
-    free(tmp);
-    t_str = ft_itoa(data->texture, 10);
-    tmp = ft_strjoin(v_str, n_str);
-    res = ft_strjoin(tmp, t_str);
-    free(tmp);
-    free(v_str);
-    free(n_str);
-    free(t_str);
-    return (res);
-}
-
 ssize_t indexgen(void)
 {
     static ssize_t index = -1;
@@ -120,17 +50,22 @@ ssize_t indexgen(void)
 void append_to_vbo(t_vert_data *data, GLfloat *vbo, t_model_data *scop_model)
 {
     static ssize_t offset = -1;
-    t_vertex_ctx   vert;
+    static t_vertex_ctx fallback = (t_vertex_ctx){0.0f, 0.0f, 0.0f};
+    void            *value;
+    t_vertex_ctx    vert;
 
-    vert = *(t_vertex_ctx*)value_at(data->vertex - 1, &scop_model->vertices);
+    value = value_at(data->vertex - 1, &scop_model->vertices);
+    vert = value ? *(t_vertex_ctx*)value : fallback;
     vbo[++offset] = (GLfloat)vert.x;
     vbo[++offset] = (GLfloat)vert.y;
     vbo[++offset] = (GLfloat)vert.z;
-    vert = *(t_vertex_ctx*)value_at(data->normal - 1, &scop_model->normals);
+    value = value_at(data->normal - 1, &scop_model->normals);
+    vert = (value ? *(t_vertex_ctx*)value : fallback);
     vbo[++offset] = (GLfloat)vert.x;
     vbo[++offset] = (GLfloat)vert.y;
     vbo[++offset] = (GLfloat)vert.z;
-    vert = *(t_vertex_ctx*)value_at(data->texture - 1, &scop_model->texels);
+    value = value_at(data->texture - 1, &scop_model->texels);
+    vert = value ? *(t_vertex_ctx*)value : fallback;
     vbo[++offset] = (GLfloat)vert.x;
     vbo[++offset] = (GLfloat)vert.y;
 }

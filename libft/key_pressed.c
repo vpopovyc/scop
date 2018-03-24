@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   key_pressed.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/27 15:12:12 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/01/27 15:12:13 by vpopovyc         ###   ########.fr       */
+/*   Created: 2018/03/24 21:05:50 by vpopovyc          #+#    #+#             */
+/*   Updated: 2018/03/24 21:08:17 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __UTILS_H
-# define __UTILS_H
+#include <key_pressed.h>
 
-# include "context.h"
-# include <libft.h>
-# include "../../scop.h"
+static _Bool *key(void)
+{
+    static _Bool key = 0;
 
-int space_delim(int c);
-int face_delim(int c);
-int slash_delim(int c);
+    return (&key);
+}
 
-void update_axis(t_cs *cs, t_axis_type type, GLfloat delta);
-void update_origin(t_coord_type type, t_float4 *o, GLfloat delta);
-void update_scale(t_cs *cs, GLfloat delta);
+_Bool is_key_pressed(void)
+{
+    return (key());
+}
 
-#endif
+void key_pressed(void)
+{
+    *key() = 1;
+}
+
+void reset_key_press(void)
+{
+    *key() = 0;
+}
+
+

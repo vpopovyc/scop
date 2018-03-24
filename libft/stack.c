@@ -35,18 +35,20 @@ int         stack_size(t_stack *stack)
 void    *value_at(unsigned long index, t_stack *stack)
 {
     unsigned long  i;
+    unsigned long  i_max;
     t_stack_elem   *res;
 
     i = 0;
+    i_max = stack_size(stack);
     res = stack->top_node;
     if (res != NULL)
     {
-        while (i != index)
+        while (i != index && i < i_max)
         {
             res = res->bot_elem;
             ++i;
         }
-        return (res->context);
+        return (i == i_max ? NULL : res->context);
     }
     return (NULL);
 }

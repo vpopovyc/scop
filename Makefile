@@ -6,7 +6,7 @@
 #    By: vpopovyc <vpopovyc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/01 18:32:39 by vpopovyc          #+#    #+#              #
-#    Updated: 2018/03/15 22:56:10 by vpopovyc         ###   ########.fr        #
+#    Updated: 2018/03/24 21:35:04 by vpopovyc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ EXEC = scop
 
 CORE = src/scop.c src/handle_command.c src/sdl_gl_init.c src/parse_obj.c \
 		src/loader.c src/utils/delims.c src/utils/context.c \
-        src/compile_shaders.c
+        src/compile_shaders.c src/view_update.c src/draw.c
 
 SRC += $(CORE)
 
@@ -90,7 +90,7 @@ clean:
 fclean: clean
 	@rm -rf $(EXEC)
 
-re: glew.clean libft.fclean fclean all
+re: lode.fclean glew.clean libft.fclean fclean all
 
 libft.all:
 	@echo  "\x1b[32mlibft   compiles...\x1b[0m"

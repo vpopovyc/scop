@@ -6,7 +6,7 @@
 /*   By: vpopovyc <vpopovyc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/15 17:09:16 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/03/13 22:42:44 by vpopovyc         ###   ########.fr       */
+/*   Updated: 2018/03/24 21:11:49 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stack.h>
 # include <hash.h>
 # include <stddef.h>
+# include <key_pressed.h>
 
 size_t  ft_strlen(char *s);
 int		ft_strequ(const char *s1, const char *s2);

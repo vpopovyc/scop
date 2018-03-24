@@ -31,6 +31,9 @@
 		97AD8C752057124E005966BE /* Porsche_911_GT2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Porsche_911_GT2.obj; sourceTree = "<group>"; };
 		97AD8C762057124E005966BE /* 42.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 42.obj; sourceTree = "<group>"; };
 		97AD8C772057124E005966BE /* cheatsheet.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cheatsheet.txt; sourceTree = "<group>"; };
+		97B24994205F9F110092348F /* test.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.obj; sourceTree = "<group>"; };
+		97B249962066DB5A0092348F /* view_update.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = view_update.c; sourceTree = "<group>"; };
+		97B249972066DDA30092348F /* draw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = draw.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -55,6 +58,8 @@
 				97AD8C542057124E005966BE /* sdl_gl_init.c */,
 				97AD8C562057124E005966BE /* parse_obj.c */,
 				97AD8C672057124E005966BE /* scop.c */,
+				97B249962066DB5A0092348F /* view_update.c */,
+				97B249972066DDA30092348F /* draw.c */,
 				97AD8C6A2057124E005966BE /* handle_command.c */,
 				97AD8C6F2057124E005966BE /* compile_shaders.c */,
 			);
@@ -100,6 +105,7 @@
 				97AD8C752057124E005966BE /* Porsche_911_GT2.obj */,
 				97AD8C762057124E005966BE /* 42.obj */,
 				97AD8C772057124E005966BE /* cheatsheet.txt */,
+				97B24994205F9F110092348F /* test.obj */,
 			);
 			path = resources;
 			sourceTree = "<group>";

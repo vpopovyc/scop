@@ -53,3 +53,27 @@ void *new_ctx(t_line_type type, ...)
     va_end(list);
     return (ptr - sizeof(double) * i_max);
 }
+
+char *keygen(t_vert_data *data)
+{
+    char *v_str;
+    char *n_str;
+    char *t_str;
+    char *res;
+    char *tmp;
+
+    tmp = ft_itoa(data->vertex, 10);
+    v_str = ft_strjoin(tmp, "/");
+    free(tmp);
+    tmp = ft_itoa(data->normal, 10);
+    n_str = ft_strjoin(tmp, "/");
+    free(tmp);
+    t_str = ft_itoa(data->texture, 10);
+    tmp = ft_strjoin(v_str, n_str);
+    res = ft_strjoin(tmp, t_str);
+    free(tmp);
+    free(v_str);
+    free(n_str);
+    free(t_str);
+    return (res);
+}

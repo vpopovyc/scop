@@ -7,9 +7,9 @@ layout (location = 2) in vec2 uv;
 // out vec4 _color;
 out vec2 tex_coord;
 
-uniform mat4 rotation_matrix;
-uniform mat4 scale_matrix;
-uniform mat4 translate_matrix;
+uniform mat4 rm;
+uniform mat4 sm;
+uniform mat4 tm;
 
 
 const mat4 proj_matrix = mat4(
@@ -21,8 +21,7 @@ const mat4 proj_matrix = mat4(
 
 void    main()
 {
-    gl_Position = proj_matrix * (translate_matrix * rotation_matrix * scale_matrix * vec4(pos.x, pos.y, pos.z, 1.0f));
-    // _color = vec4(pos.x < 0.0f ? pos.x + 0.9 : pos.x, pos.y < 0.0f ? pos.y + 0.7 : pos.y, pos.z < 0.0f ? pos.z + 0.6 : pos.z, 1.0f);
+    gl_Position = proj_matrix * (tm * rm * sm * vec4(pos.x, pos.y, pos.z, 1.0f));
     tex_coord = uv;
 }
 

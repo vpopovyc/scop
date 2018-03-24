@@ -19,12 +19,15 @@
 # include "../../parse_obj.h"
 
 typedef struct s_face_ctx t_face_ctx;
+typedef struct s_vert_data t_vert_data;
 
 void *new_ctx(t_line_type type, ...) __attribute__ ((malloc));
 
 void *new_face_ctx(t_face_ctx *ctx) __attribute__ ((malloc));
 
 void *new_hash_ctx(t_uint index) __attribute__ ((malloc));
+
+char *keygen(t_vert_data *data);
 
 typedef struct  s_vert_data
 {
