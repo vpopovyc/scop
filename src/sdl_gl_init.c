@@ -15,15 +15,15 @@
 void gl_attr_init(void);
 void gl_version_info(void);
 
-void init(t_gl *gl)
+void init(t_sdl *sdl)
 {
     assert(SDL_Init(SDL_INIT_VIDEO) == 0);
     gl_attr_init();
-    gl->win = SDL_CreateWindow(WINNAME, SDL_WINDOWPOS_CENTERED,
+    sdl->win = SDL_CreateWindow(WINNAME, SDL_WINDOWPOS_CENTERED,
                            SDL_WINDOWPOS_CENTERED,
                            WINX, WINY, SDL_WINDOW_OPENGL);
-    assert(gl->win != NULL);
-    gl->ctx = SDL_GL_CreateContext(gl->win);
+    assert(sdl->win != NULL);
+    sdl->ctx = SDL_GL_CreateContext(sdl->win);
     glViewport(0, 0, WINX, WINY);
     glEnable(GL_DEPTH_TEST);
     glewExperimental = 1;
@@ -31,14 +31,14 @@ void init(t_gl *gl)
     SDL_GL_SetSwapInterval(1);
     glClearColor(0.863, 0.863, 0.863, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
-    SDL_GL_SwapWindow(gl->win);
+    SDL_GL_SwapWindow(sdl->win);
     gl_version_info();
 }
 
-void deinit(t_gl *gl)
+void deinit(t_sdl *sdl)
 {
-    SDL_GL_DeleteContext(gl->ctx);
-    SDL_DestroyWindow(gl->win);
+    SDL_GL_DeleteContext(sdl->ctx);
+    SDL_DestroyWindow(sdl->win);
     SDL_Quit();
 }
 

@@ -51,28 +51,30 @@ void check_compile_errors(GLuint shader_program, GLuint fragment_shader, GLuint 
         print_error_log(fragment_shader, log);
 }
 
-void compile_shaders(t_gl *gl)
+GLuint compile_shaders(const char *vert_fpath, const char *frag_fpath)
 {
     const GLchar *vert_shader;
     const GLchar *frag_shader;
     GLuint        fragment_shader;
     GLuint        vertex_shader;
+    GLuint        shader_program;
 
     vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-    vert_shader = reader("src/shaders/vertex.glsl");
+    vert_shader = reader(vert_fpath);
     glShaderSource(vertex_shader, 1, &vert_shader, NULL);
     glCompileShader(vertex_shader);
     fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-    frag_shader = reader("src/shaders/fragment.glsl");
+    frag_shader = reader(frag_fpath);
     glShaderSource(fragment_shader, 1, &frag_shader, NULL);
     glCompileShader(fragment_shader);
-    gl->shader_program = glCreateProgram();
-    glAttachShader(gl->shader_program, vertex_shader);
-    glAttachShader(gl->shader_program, fragment_shader);
-    glLinkProgram(gl->shader_program);
-    check_compile_errors(gl->shader_program, vertex_shader, fragment_shader);
+    shader_program = glCreateProgram();
+    glAttachShader(shader_program, vertex_shader);
+    glAttachShader(shader_program, fragment_shader);
+    glLinkProgram(shader_program);
+    check_compile_errors(shader_program, vertex_shader, fragment_shader);
     glDeleteShader(fragment_shader);
     glDeleteShader(vertex_shader);
     free(*(void**)&vert_shader);
     free(*(void**)&frag_shader);
+    return (shader_program);
 }

@@ -65,6 +65,14 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "resources/42.obj"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "resources/cube.obj"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "resources/nanosuit.obj"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

@@ -26,7 +26,7 @@ static void fill_uniforms(GLfloat *sm, GLfloat *rm, GLfloat *tm, t_gl *gl)
     glUniformMatrix4fv(translate_matrix_id, 1, GL_FALSE, tm);
 }
 
-void set_mvp(t_gl *gl, t_cs *cs)
+void set_model_matrix(t_gl *gl, t_cs *cs)
 {
     static GLfloat scale_matrix[16];
     static GLfloat rotate_matrix[16];
@@ -43,16 +43,33 @@ void set_mvp(t_gl *gl, t_cs *cs)
     fill_uniforms(scale_matrix, rotate_matrix, translate_matrix, gl);
 }
 
-void draw(t_gl *gl, t_cs *cs)
+void draw(t_sdl *sdl, t_scop_object *entry, t_scop_object *skybox)
 {
-    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        //     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glUseProgram(entry->gl.shader_program);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glUseProgram(gl->shader_program);
-    set_mvp(gl, cs);
-    glBindTexture(GL_TEXTURE_2D, gl->tex);
-    glBindVertexArray(gl->vao);
-    glDrawElements(GL_TRIANGLES, gl->idx_num, GL_UNSIGNED_INT, 0);
+
+    set_model_matrix(&entry->gl, &entry->cs);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, entry->gl.tex);
+
+    glBindVertexArray(entry->gl.vao);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, entry->gl.ibo);
+    glDrawElements(GL_TRIANGLES, entry->gl.idx_num, GL_UNSIGNED_INT, 0);
+
+    set_model_matrix(&skybox->gl, &skybox->cs);
+
+    glBindVertexArray(skybox->gl.vao);
+    glBindTexture(GL_TEXTURE_2D, skybox->gl.tex);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, skybox->gl.ibo);
+    glDrawElements(GL_TRIANGLES, skybox->gl.idx_num, GL_UNSIGNED_INT, 0);
+
     glBindVertexArray(0);
-    SDL_GL_SwapWindow(gl->win);
+
+    SDL_GL_SwapWindow(sdl->win);
     reset_key_press();
 }
+

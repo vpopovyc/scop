@@ -55,7 +55,7 @@ void read_normal(char **data, t_stack *normals)
     enqueue(normals, new_ctx(vertex_normal, buff[0], buff[1], buff[2]));
 }
 
-void process_vertex(char *line, t_model_data *scop_model)
+void process_vertex(char *line, t_model_data *model)
 {
     char opt_type;
 
@@ -69,15 +69,15 @@ void process_vertex(char *line, t_model_data *scop_model)
     }
     if (opt_type == vertex_texture)
     {
-        read_texels(ft_split(line, space_delim), &scop_model->texels);
+        read_texels(ft_split(line, space_delim), &model->texels);
     }
     else if (opt_type == vertex_normal)
     {
-        read_normal(ft_split(line, space_delim), &scop_model->normals);
+        read_normal(ft_split(line, space_delim), &model->normals);
     }
     else
     {
-        read_vertices(ft_split(line, space_delim), &scop_model->vertices);
+        read_vertices(ft_split(line, space_delim), &model->vertices);
     }
 }
 
@@ -127,7 +127,7 @@ void process_face(char *line, t_stack *faces)
     ft_ppdel(&data);
 }
 
-void match_type(char type, char *line, t_model_data *scop_model)
+void match_type(char type, char *line, t_model_data *model)
 {
     if (type == comment)
     {
@@ -139,11 +139,11 @@ void match_type(char type, char *line, t_model_data *scop_model)
     }
     else if (type == face)
     {
-        process_face(line, &scop_model->faces);
+        process_face(line, &model->faces);
     }
     else if (type == vertex)
     {
-        process_vertex(line, scop_model);
+        process_vertex(line, model);
     }
     else
     {
@@ -179,7 +179,7 @@ void object_center_in(t_stack *vertices)
     }
 }
 
-void parse_obj(const char *file_path, t_model_data *scop_model)
+void parse_obj(const char *file_path, t_scop_object *entry)
 {
     int     fd;
     char    *line;
@@ -190,9 +190,9 @@ void parse_obj(const char *file_path, t_model_data *scop_model)
         if (ft_is_empty(line))
             ;// Do nothing
         else
-            match_type(line[0], line, scop_model);
+            match_type(line[0], line, &entry->model);
         free(line);
     }
-    object_center_in(&scop_model->vertices);
+    object_center_in(&entry->model.vertices);
     close(fd);
 }
