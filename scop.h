@@ -111,7 +111,6 @@ void draw(t_sdl *sdl, t_scop_object *entry, t_scop_object *skybox);
 
 #endif
 
-//TODO: - phong shading
 //TODO: - update position of spawn(refer to bounding box of object loaded)
 //TODO: - update header linkage
 //TODO: - app icon
