@@ -96,10 +96,12 @@ void handle_command(t_sdl *sdl, t_scop_object *entry, t_scop_object *skybox)
             SDL_Delay(200);
         }
         scale(&entry->cs, &sdl->event);
-        rotate(&entry->cs, keystate, orbit_camera_switch);
+        if (!sdl->feedback)
+            rotate(&entry->cs, keystate, orbit_camera_switch);
         if (sdl->feedback && !orbit_camera_switch)
             rotate(&skybox->cs, keystate, orbit_camera_switch);
-        translate(&entry->cs, keystate);
+        if (!sdl->feedback)
+            translate(&entry->cs, keystate);
         texture_change(entry, skybox, keystate);
         if (is_key_pressed()) {
             draw(sdl, entry, skybox);

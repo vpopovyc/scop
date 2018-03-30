@@ -32,6 +32,6 @@ static void scale(t_stack *vertices, GLfloat scale)
 
 void init_skybox(t_scop_object *skybox)
 {
-    scale(&skybox->model.vertices, 50.0f);
+    scale(&skybox->model.vertices, 90.0f);
 }
 

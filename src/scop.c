@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../scop.h"
+#include "utils/context.h"
 
 static void cs_init(t_cs *new_cs)
 {
@@ -33,6 +34,35 @@ static void preinit(t_sdl **sdl, t_scop_object **entry, t_scop_object **skybox)
     cs_init(&((*skybox)->cs));
 }
 
+void fit_in_view(t_stack *vertices, t_cs *cs)
+{
+    size_t          i;
+    size_t          vert_num;
+    GLfloat         max_y;
+    GLfloat         min_y;
+    t_vertex_ctx    *ctx;
+
+    vert_num = stack_size(vertices);
+    max_y = 0.0f;
+    min_y = 0.0f;
+    i = 0;
+    ctx = (t_vertex_ctx*)value_at(i, vertices);
+    if (!ctx)
+        return ;
+    max_y = (GLfloat)ctx->y;
+    min_y = (GLfloat)ctx->y;
+    i += 1;
+    while (i < vert_num && (ctx = (t_vertex_ctx*)value_at(i, vertices)))
+    {
+        if ((GLfloat)ctx->y > max_y)
+            max_y = (GLfloat)ctx->y;
+        else if ((GLfloat)ctx->y < min_y)
+            min_y = (GLfloat)ctx->y;
+        ++i;
+    }
+    cs->o[z] -= atanf(22.5f) * (max_y - min_y);
+}
+
 int main(int ac, char *av[])
 {
     t_sdl         *sdl;
@@ -45,6 +75,7 @@ int main(int ac, char *av[])
     {
         parse_obj(av[1], entry);
         parse_obj(SKYBOX_OBJECT_FPATH, skybox);
+        fit_in_view(&entry->model.vertices, &entry->cs);
 
         init(sdl);
         init_skybox(skybox);
