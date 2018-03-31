@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../scop.h"
+#include <scop.h>
 
 static unsigned char *tex_loader(const char *tex_file_name, unsigned int *width, unsigned int *height)
 {

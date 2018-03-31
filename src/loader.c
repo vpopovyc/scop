@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../scop.h"
-#include "utils/utils.h"
+#include <scop.h>
+#include <utils.h>
 
 ssize_t *indexgen(void)
 {

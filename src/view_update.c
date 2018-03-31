@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/utils.h"
+#include <utils.h>
 
 void update_axis(t_cs *cs, t_axis_type type, GLfloat delta)
 {

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../scop.h"
-#include "utils/context.h"
+#include <scop.h>
+#include <context.h>
 
 static void scale(t_stack *vertices, GLfloat scale)
 {

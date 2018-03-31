@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../scop.h"
+#include <scop.h>
 
 void gl_attr_init(void);
 void gl_version_info(void);

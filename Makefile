@@ -23,9 +23,11 @@ OBJ = $(SRC:.c=.o)
 
 CC = clang
 
-CCFLAGS = -Wall -Wextra -Werror -g
+CCFLAGS = -Wall -Wextra -Werror -O3
 
 FRMPATH = -F /Library/Frameworks
+
+SCOPINC = -Iincludes -Isrc/utils
 
 # -----------------------------------------------------------
 # Frameworks
@@ -55,7 +57,7 @@ LIBFT = libft
 
 LIBLODEPNGBIN = liblodepng/libLodePNG.a
 
-LIBGLEWINC = liblodepng
+LIBLODEINC = liblodepng
 
 LIBLODEPNG = liblodepng
 
@@ -66,7 +68,7 @@ LIBS = -lGLEW -lFT -lLodePNG
 
 LIBSDIR = -L$(LIBGLEW) -L$(LIBFT) -L$(LIBLODEPNG)
 
-LIBSINC = -I$(LIBGLEWINC) -I$(LIBFTINC) -I$(LIBGLEWINC)
+LIBSINC = -I$(LIBGLEWINC) -I$(LIBFTINC) -I$(LIBLODEINC)
 
 # -----------------------------------------------------------
 
@@ -83,7 +85,7 @@ $(LIBGLEWBIN): glew.all
 $(LIBLODEPNGBIN): lode.all
 
 %.o: %.c
-	$(CC) -g $(CCFLAGS) $(LIBSINC) $(FRMPATH) -o $@ -c $<
+	$(CC) $(CCFLAGS) $(SCOPINC) $(LIBSINC) $(FRMPATH) -o $@ -c $<
 
 clean:
 	@rm -rf $(OBJ)

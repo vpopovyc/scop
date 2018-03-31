@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../scop.h"
-#include "utils/context.h"
+#include <scop.h>
+#include <context.h>
 
 static void cs_init(t_cs *new_cs)
 {

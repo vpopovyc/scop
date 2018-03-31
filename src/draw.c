@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../scop.h"
+#include <scop.h>
 
 static void fill_uniforms(GLfloat *sm, GLfloat *rm, GLfloat *tm, t_gl *gl)
 {

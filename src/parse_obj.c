@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../scop.h"
-#include "../parse_obj.h"
-#include "utils/utils.h"
+#include <scop.h>
+#include <parse_obj.h>
+#include <utils.h>
 #include <fcntl.h>
 
 void generic_reader(char **data, float *buffer, const size_t n)
