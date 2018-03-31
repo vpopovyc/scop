@@ -13,25 +13,25 @@
 #include <scop.h>
 #include <context.h>
 
-static void scale(t_stack *vertices, GLfloat scale)
+static void	scale(t_stack *vertices, GLfloat scale)
 {
-    size_t          i;
-    size_t          vert_num;
-    t_vertex_ctx    *ctx;
+	size_t			i;
+	size_t			vert_num;
+	t_vertex_ctx	*ctx;
 
-    i = 0;
-    vert_num = stack_size(vertices);
-    while (i < vert_num && (ctx = (t_vertex_ctx*)value_at(i, vertices)))
-    {
-        ctx->x *= scale;
-        ctx->y *= scale;
-        ctx->z *= scale;
-        ++i;
-    }
+	i = 0;
+	vert_num = stack_size(vertices);
+	while (i < vert_num && (ctx = (t_vertex_ctx*)value_at(i, vertices)))
+	{
+		ctx->x *= scale;
+		ctx->y *= scale;
+		ctx->z *= scale;
+		++i;
+	}
 }
 
-void init_skybox(t_scop_object *skybox)
+void		init_skybox(t_scop_object *skybox)
 {
-    scale(&skybox->model.vertices, 90.0f);
+	scale(&skybox->model.vertices, 90.0f);
 }
 
