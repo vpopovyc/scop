@@ -15,7 +15,7 @@ EXEC = scop
 CORE = src/scop.c src/handle_command.c src/sdl_gl_init.c src/parse_obj.c \
 		src/loader.c src/utils/delims.c src/utils/context.c \
         src/compile_shaders.c src/view_update.c src/draw.c src/skybox.c \
-		src/textures.c
+		src/textures.c src/loader_addition.c src/utils/buffer_attribs.c
 
 SRC += $(CORE)
 
