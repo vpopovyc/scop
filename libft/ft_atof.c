@@ -14,7 +14,7 @@
 
 float	ft_atof(const char *p)
 {
-	float 	result;
+	float	result;
 	float	fract;
 	_Bool	minus;
 

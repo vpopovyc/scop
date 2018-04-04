@@ -32,5 +32,7 @@ void append_to_ibo(GLuint index, GLuint *ibo);
 void append_to_vbo(t_vert_data *data, GLfloat *vbo, t_model_data *scop_model);
 
 void buffers_attribs(GLuint ibo, GLuint *ibo_buffer, GLuint ibo_size);
+void object_center_in(t_stack *vertices);
 
+void process_vertex(char *line, t_model_data *model);
 #endif

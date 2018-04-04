@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_pressed.c                                      :+:      :+:    :+:   */
+/*   stack_ext.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/24 21:05:50 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/03/24 21:08:17 by vpopovyc         ###   ########.fr       */
+/*   Created: 2018/04/04 21:29:40 by vpopovyc          #+#    #+#             */
+/*   Updated: 2018/04/04 22:21:41 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <key_pressed.h>
+#include <stack.h>
+#include <stdlib.h>
 
-static _Bool	*key(void)
+int		stack_size(t_stack *stack)
 {
-	static _Bool key = 0;
+	int				len;
+	t_stack_elem	*i;
 
-	return (&key);
-}
-
-_Bool			is_key_pressed(void)
-{
-	return (key());
-}
-
-void			key_pressed(void)
-{
-	*key() = 1;
-}
-
-void			reset_key_press(void)
-{
-	*key() = 0;
+	len = 0;
+	i = stack->top_node;
+	if (i != NULL)
+	{
+		++len;
+		while (i != stack->bot_node)
+		{
+			++len;
+			i = i->bot_elem;
+		}
+	}
+	return (len);
 }

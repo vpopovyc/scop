@@ -6,7 +6,7 @@
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/25 12:55:15 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/03/25 12:55:17 by vpopovyc         ###   ########.fr       */
+/*   Updated: 2018/04/04 20:33:38 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,3 @@ void		init_skybox(t_scop_object *skybox)
 {
 	scale(&skybox->model.vertices, 90.0f);
 }
-

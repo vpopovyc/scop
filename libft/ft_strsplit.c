@@ -72,4 +72,3 @@ char			**ft_strsplit(char *s, char c)
 	p2p[i] = NULL;
 	return (p2p);
 }
-

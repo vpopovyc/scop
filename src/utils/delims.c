@@ -12,26 +12,26 @@
 
 #include <utils.h>
 
-int space_delim(int c)
+int	space_delim(int c)
 {
-    if (c == ' ')
-        return (1);
-    else
-        return (0);
+	if (c == ' ')
+		return (1);
+	else
+		return (0);
 }
 
-int face_delim(int c)
+int	face_delim(int c)
 {
-    if (c == 'f' || c == ' ')
-        return (1);
-    else
-        return (0);
+	if (c == 'f' || c == ' ')
+		return (1);
+	else
+		return (0);
 }
 
-int slash_delim(int c)
+int	slash_delim(int c)
 {
-    if (c == '/')
-        return (1);
-    else
-        return (0);
+	if (c == '/')
+		return (1);
+	else
+		return (0);
 }

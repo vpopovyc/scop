@@ -15,10 +15,10 @@
 
 void	*ft_memcpy(void *dst, void *src, size_t n)
 {
-	register char 	*p_d;
-	register char 	*p_s;
-	register size_t i;
-	register size_t i_max;
+	register char	*p_d;
+	register char	*p_s;
+	register size_t	i;
+	register size_t	i_max;
 
 	p_d = dst;
 	p_s = src;
