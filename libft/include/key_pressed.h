@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __KEY_PRESSED
-# define __KEY_PRESSED
+#ifndef __KEY_PRESSED_H
+# define __KEY_PRESSED_H
 
-_Bool is_key_pressed(void);
-void  key_pressed(void);
-void  reset_key_press(void);
+_Bool	is_key_pressed(void);
+void	key_pressed(void);
+void	reset_key_press(void);
 
 #endif
-

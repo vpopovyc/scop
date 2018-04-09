@@ -16,22 +16,22 @@
 typedef struct s_stack      t_stack;
 typedef struct s_stack_elem t_stack_elem;
 
-typedef struct              s_stack_elem
+typedef struct				s_stack_elem
 {
-	t_stack_elem            *top_elem;
-	t_stack_elem            *bot_elem;
-	void                    *context;
-}                           t_stack_elem;
+	t_stack_elem			*top_elem;
+	t_stack_elem			*bot_elem;
+	void					*context;
+}							t_stack_elem;
 
-typedef struct              s_stack
+typedef struct				s_stack
 {
-	t_stack_elem            *top_node;
-	t_stack_elem            *bot_node;
-}                           t_stack;
+	t_stack_elem			*top_node;
+	t_stack_elem			*bot_node;
+}							t_stack;
 
 int							stack_size(t_stack *stack);
 void						*top(t_stack *stack);
-void    					*value_at(unsigned long index, t_stack *stack);
+void						*value_at(unsigned long index, t_stack *stack);
 void						pop(t_stack *stack);
 void						push(t_stack *stack, void *context);
 void						enqueue(t_stack *stack, void *context);
