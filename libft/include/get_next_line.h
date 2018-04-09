@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H 
+#ifndef __GET_NEXT_LINE_H
+# define __GET_NEXT_LINE_H
+
 # include <libft.h>
 # define BUFF_SIZE 512
 
@@ -23,7 +24,7 @@ typedef struct		s_gnl
 	long			nbytes;
 	struct s_gnl	*next;
 	int				fd;
-	char 			padding[4];
+	char			padding[4];
 }					t_gnl;
 int					get_next_line(const int fd, char **line);
 

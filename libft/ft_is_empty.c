@@ -12,16 +12,16 @@
 
 #include <libft.h>
 
-int ft_is_empty(const char *line)
+int	ft_is_empty(const char *line)
 {
-    register const char *p;
+	register const char *p;
 
-    p = line;
-    while (*p)
-    {
-        if (*p != ' ')
-            return (0);
-        ++p;
-    }
-    return (1);
+	p = line;
+	while (*p)
+	{
+		if (*p != ' ')
+			return (0);
+		++p;
+	}
+	return (1);
 }

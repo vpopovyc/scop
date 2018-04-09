@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef __HASH_H
 # define __HASH_H
 
@@ -29,7 +28,7 @@ typedef unsigned			t_uint;
 typedef struct				s_hash
 {
 	char					*key;
-	void 					*value;
+	void					*value;
 	struct s_hash			*internal;
 }							t_hash;
 
@@ -37,7 +36,7 @@ typedef struct				s_hash
 **	hash.c
 */
 
-void 						*value_of(char *key, t_hash *table);
+void						*value_of(char *key, t_hash *table);
 void						insert(char *key, void *value, t_hash *table);
 int							key_exist(char *key, t_hash *table);
 t_hash						*new_table(t_uint size);

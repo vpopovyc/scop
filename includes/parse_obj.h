@@ -13,20 +13,19 @@
 #ifndef __PARSE_OBJ_H
 # define __PARSE_OBJ_H
 
-typedef enum    e_line_type
+typedef enum	e_line_type
 {
-    comment = '#',
-    mtllib = 'm',
-    object_name = 'o',
-    group_name = 'g',
-    face = 'f',
-    vertex = 'v',
-    vertex_texture = 't',
-    vertex_normal = 'n',
-    uv_mapping = 'p'
-}               t_line_type;
+	comment = '#',
+	mtllib = 'm',
+	object_name = 'o',
+	group_name = 'g',
+	face = 'f',
+	vertex = 'v',
+	vertex_texture = 't',
+	vertex_normal = 'n',
+	uv_mapping = 'p'
+}				t_line_type;
 
-
-typedef struct s_stack  t_stack;
+typedef struct s_stack	t_stack;
 
 #endif

@@ -15,8 +15,8 @@
 
 void	*ft_memset(void *p, char c, size_t len)
 {
-	register char 	*r_p;
-	register char 	r_c;
+	register char	*r_p;
+	register char	r_c;
 	register size_t	i;
 
 	i = len;

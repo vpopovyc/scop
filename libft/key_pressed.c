@@ -12,26 +12,24 @@
 
 #include <key_pressed.h>
 
-static _Bool *key(void)
+static _Bool	*key(void)
 {
-    static _Bool key = 0;
+	static _Bool key = 0;
 
-    return (&key);
+	return (&key);
 }
 
-_Bool is_key_pressed(void)
+_Bool			is_key_pressed(void)
 {
-    return (key());
+	return (key());
 }
 
-void key_pressed(void)
+void			key_pressed(void)
 {
-    *key() = 1;
+	*key() = 1;
 }
 
-void reset_key_press(void)
+void			reset_key_press(void)
 {
-    *key() = 0;
+	*key() = 0;
 }
-
-

@@ -22,7 +22,7 @@
 # include <stddef.h>
 # include <key_pressed.h>
 
-size_t  ft_strlen(char *s);
+size_t	ft_strlen(char *s);
 int		ft_strequ(const char *s1, const char *s2);
 void	ft_ppdel(char ***sv);
 void	*ft_memset(void *p, char c, size_t len);
@@ -38,7 +38,7 @@ char	*ft_strncpy(char *dst, char *src, size_t len);
 char	*ft_strdup(char *s1);
 char	*ft_strnew(size_t size);
 char	**ft_strsplit(char *s, char c);
-char    **ft_split(char *string, int (*compare)(int));
-int     ft_is_empty(const char *line);
+char	**ft_split(char *string, int (*compare)(int));
+int		ft_is_empty(const char *line);
 
 #endif

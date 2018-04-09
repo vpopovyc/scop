@@ -14,7 +14,7 @@
 #include <string.h>
 #define TABLESIZE(table) (*(t_uint*)(((void*)(table)) - sizeof(t_uint)))
 
-int		key_exist(char *key, t_hash *table)
+int				key_exist(char *key, t_hash *table)
 {
 	t_hash	*iter;
 	int		id;
@@ -62,7 +62,7 @@ static t_hash	*append_with(char *key, void *value, t_hash *internal)
 	return (internal);
 }
 
-void	insert(char *key, void *value, t_hash *table)
+void			insert(char *key, void *value, t_hash *table)
 {
 	int		id;
 
@@ -76,7 +76,7 @@ void	insert(char *key, void *value, t_hash *table)
 		table[id].internal = append_with(key, value, table[id].internal);
 }
 
-void	*value_of(char *key, t_hash *table)
+void			*value_of(char *key, t_hash *table)
 {
 	int		id;
 	t_hash	*iter;
@@ -97,7 +97,7 @@ void	*value_of(char *key, t_hash *table)
 	return (NULL);
 }
 
-t_hash	*new_table(t_uint size)
+t_hash			*new_table(t_uint size)
 {
 	void *mem;
 
@@ -107,7 +107,7 @@ t_hash	*new_table(t_uint size)
 	else
 	{
 		memset(mem, 0, (sizeof(t_hash) * size) + sizeof(t_uint));
-		memcpy(mem, &size, sizeof(t_uint)); 
+		memcpy(mem, &size, sizeof(t_uint));
 		return (mem + sizeof(t_uint));
 	}
 }

@@ -19,8 +19,8 @@ static t_gnl	*ft_gnlnew(const int fd)
 	if ((lst = malloc(sizeof(t_gnl))) == NULL)
 		return (NULL);
 	lst->brb = NULL;
-    lst->pimp = malloc(sizeof(char));
-    lst->pimp[0] = '\0';
+	lst->pimp = malloc(sizeof(char));
+	lst->pimp[0] = '\0';
 	lst->next = NULL;
 	lst->fd = fd;
 	lst->nbytes = 0;

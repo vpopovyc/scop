@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_obj.h                                        :+:      :+:    :+:   */
+/*   stack_ext.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpopovyc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/27 19:14:01 by vpopovyc          #+#    #+#             */
-/*   Updated: 2018/01/27 19:14:02 by vpopovyc         ###   ########.fr       */
+/*   Created: 2018/04/04 21:29:40 by vpopovyc          #+#    #+#             */
+/*   Updated: 2018/04/04 22:21:41 by vpopovyc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __PARSE_OBJ_H
-# define __PARSE_OBJ_H
+#include <stack.h>
+#include <stdlib.h>
 
-typedef enum    e_line_type
+int		stack_size(t_stack *stack)
 {
-    comment = '#',
-    mtllib = 'm',
-    object_name = 'o',
-    group_name = 'g',
-    face = 'f',
-    vertex = 'v',
-    vertex_texture = 't',
-    vertex_normal = 'n',
-    uv_mapping = 'p'
-}               t_line_type;
+	int				len;
+	t_stack_elem	*i;
 
-
-typedef struct s_stack  t_stack;
-
-#endif
+	len = 0;
+	i = stack->top_node;
+	if (i != NULL)
+	{
+		++len;
+		while (i != stack->bot_node)
+		{
+			++len;
+			i = i->bot_elem;
+		}
+	}
+	return (len);
+}
